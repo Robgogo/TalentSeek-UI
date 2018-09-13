@@ -1,0 +1,32 @@
+<div class="container">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id="table">
+      <thead>
+        <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Age</th>
+        <th>Card Number</th>
+        <th>Action</th>
+        <th>Action</th>
+        <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customerList">
+          <td>{{customer.id}}</td>
+          <td>{{customer.First_Name}}</td>
+          <td>{{customer.Middle_Name}}</td>
+          <td>{{customer.Last_Name}}</td>
+          <td>{{customer.Phone_Number}}</td>
+          <td>{{customer.Age}}</td>
+          <td>{{customer.Card_Number}}</td>
+          <td><button type="Submit" (click)="appointment(customer)" class="btn btn-success" >Appoint</button></td>
+          <td><button type="Submit" (click)="editCustomerInfo(customer)" class="btn btn-primary" >Edit</button></td>
+          <td><button type="Submit" onClick="return confirm('Are you sure you want to delete the customer?')" class="btn btn-danger">Delete</button></td>
+        </tr>
+      </tbody>
+      </table>
+</div>

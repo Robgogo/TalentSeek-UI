@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="title">
+    <h2><b> Customer Information</b> </h2>
+  </div>
+  <div class="container">
+    <!-- <p><b>Name : </b> {{customer.First_Name}} {{customer.Middle_Name}} {{customer.Last_Name}}</p>
+    <p><b>Appointment Date : </b> <input type="date" name="appointment"></p> 
+    <p><b>Customer Card Number : </b>{{ customer.Card_Number }}</p> 
+    <p><b>Phone Number : </b>{{ customer.Phone_Number }}</p> -->
+    <p><b>Creator Name: </b> </p> 
+    <p><b>Updator Name: </b> </p> 
+    <div id="approval" class="checkbox">
+      <label>
+        <b>Approval</b> <input type="checkbox" style="margin-left: 10px;" value="remember-me"> 
+      </label>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <p><b>Status : </b> </p>
+    </div>
+    <div class="col-md-9">
+      <select id="status">
+        <option value="" selected>Select Status</option>
+        <option *ngFor="let status of statusList" value="{{status.statusName}}">{{status.statusName}}</option>
+      </select>
+    </div> 
+        
+  </div>
+  <button class="btn btn-lg btn-primary" style="margin-left: 150px;margin-top: 10px;" type="submit">Send SMS</button>
+  </div>
+</div>

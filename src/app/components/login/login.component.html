@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card card-container">
+      
+      <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+          <span id="reauth-email" class="reauth-email"></span>
+        <input type="email" id="inputEmail" class="form-control" [class.is-invalid]="loginForm.get('User_Name').invalid && loginForm.get('User_Name').dirty" 
+            formControlName="User_Name" name="User_Name" placeholder="User Name" required />
+        <small class="form-text" [hidden]="loginForm.get('User_Name').valid || loginForm.get('User_Name').pristine">
+            User Name is required
+        </small>
+    <input type="password" id="inputPassword" class="form-control" [class.is-invalid]="loginForm.get('Password').invalid && loginForm.get('Password').dirty" 
+        formControlName="Password" name="Password" placeholder="Password" name="Password" placeholder="Password" required />
+        <small class="form-text" [hidden]="loginForm.get('Password').valid || loginForm.get('Password').pristine">
+            Password is required
+        </small>
+          <div id="remember" class="checkbox">
+              <label>
+                  <input type="checkbox" value="remember-me"> Remember me
+              </label>
+          </div>
+          <button class="btn btn-lg btn-primary" [disabled]="loginForm.invalid" type="submit">Sign in</button>
+      </form><!-- /form -->
+      <a href="#" class="forgot-password">
+          Forgot the password?
+      </a>
+  </div><!-- /card-container -->
+</div><!-- /container -->
