@@ -23,7 +23,7 @@ export class SearchComponent implements OnDestroy, OnInit {
       // pageLength: 2
     };
 
-    this.dataService.getCustomerList().subscribe(result=>{
+    this.dataService.getCustomersList().subscribe(result=>{
       this.customerList=result;
       this.dtTrigger.next();
     });
@@ -44,7 +44,7 @@ export class SearchComponent implements OnDestroy, OnInit {
   appointment(customer:any){
     this.id=customer.id;
     this.dataSharingService.sendInfo(customer);
-    this.router.navigateByUrl('register/appointment/'+this.id);
+    this.router.navigateByUrl('register/appointment');
   }
 
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject,Observable,of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DataService } from "../services/data.service";
+
 import { Customer } from "../Customer";
 
 @Injectable({

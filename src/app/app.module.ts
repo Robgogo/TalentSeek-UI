@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from "./modules/app-routing.module";
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
-
+import { ErrorInterceptor } from "./Auth/error.interceptor";
+import { JwtInterceptor } from "./Auth/jwt.interceptor";
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -42,7 +43,10 @@ import { RegistrationComponent } from './components/registration/registration.co
     DataTablesModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,13 +18,13 @@ export class DataService {
 
   constructor(private baseUrl: BaseUrlService,private http: HttpClient) { }
 
-  baseurlRegisterCustomer= this.baseUrl.baseUrl + "register/customer";
-  baseurlGetCUstomers=this.baseUrl.baseUrl+ "cardNUmberGenerateEndPoint/hospitalPreFix";
-  baseurlCardNumber= this.baseUrl.baseUrl + "register/customer";
+  baseurlRegisterCustomer= this.baseUrl.baseUrl + "register/customers";
+  baseurlGetCardNumber=this.baseUrl.baseUrl+ "cardNUmberGenerateEndPoint/CareNumberGenerater";
+  baseurlGetCustomersList= this.baseUrl.baseUrl + "get/customerslist";
   baseurlGetStatus=this.baseUrl.baseUrl+ "get/statuslist";
-  statusUrl="http://localhost:3000/api/status";
   baseurlGetSingleCustomerInfo=this.baseUrl.baseUrl+ "";
-  baseurlUpdateCustomer= this.baseUrl.baseUrl + "customer/update";
+  baseurlUpdateCustomer= this.baseUrl.baseUrl + "post/updateCustomers";
+  statusUrl="http://localhost:3000/api/status";
   customerURL="http://localhost:3000/api/customer";
   customersURL="http://localhost:3000/api/customers";
   appointmentURL="http://localhost:3000/api/appointmentInfo";
@@ -35,25 +35,37 @@ export class DataService {
     return this.http.get(this.customerURL);
   }
 
-  getStatusList(){
-    return this.http.get(this.baseurlGetStatus);
-  }
-
-  getCardNumber(){
-    return this.http.get(this.cardURL);
-  }
   getStatus(){
     return this.http.get(this.statusUrl);
   }
+
+  getAppointmentInfo(){ 
+    return this.http.get(this.appointmentURL);
+  }
+
   getCustomerList(){ 
     return this.http.get(this.customersURL);
   }
 
-  updateRegisterInfo(info:any){
-    return this.http.post<any>(this.baseurlUpdateCustomer,JSON.stringify(info),httpOptions);
+  getCardNumberInfo(id:number):Observable<any>{
+    return this.http.get<any>(this.cardURL);
   }
-  getAppointmentInfo(){ 
-    return this.http.get(this.appointmentURL);
+
+  // Endpoint Url
+  getStatusList(){
+    return this.http.get(this.baseurlGetStatus);
+  }
+  
+  getCardNumber(id:number):Observable<any>{
+    return this.http.get<any>(this.baseurlGetCardNumber+"?id="+id);
+  }
+
+  getCustomersList(){ 
+    return this.http.get(this.baseurlGetCustomersList);
+  }
+
+  updateCustomerInfo(info:any){
+    return this.http.post<any>(this.baseurlUpdateCustomer,JSON.stringify(info),httpOptions);
   }
 
   postRegisterInfo(info:any){

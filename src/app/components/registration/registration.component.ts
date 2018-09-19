@@ -2,6 +2,7 @@ import { Component, Output, OnInit, EventEmitter  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from "../../services/data.service";
+import { DataSharingService } from "../../services/data-sharing.service";
 import { Customer } from "../../Customer";
 import { cardNumber } from "../../CardNumber";
 
@@ -13,44 +14,65 @@ import { cardNumber } from "../../CardNumber";
 export class RegistrationComponent implements OnInit {
   
   registrationForm: FormGroup;
-  customerInfo:Customer;
+  fName:string;mName:string;lName:string;phone:string;info:string;age:number;hospId:number;
+  customerInfo:Array<Customer>=[];
   num:number;
   hospitalId:number;
   id:number;
-  card:cardNumber = new cardNumber();
+  alert:string;
+  cardInfo:any;
   card_Number:string;
   autoGenerate:boolean;
-  constructor(private router: Router,private formBuilder: FormBuilder,private dataService:DataService) { }
+  constructor(private router: Router,private formBuilder: FormBuilder,private dataService:DataService,private dataSharingService:DataSharingService) { }
 
   ngOnInit() {
     this.getCardNumberStatus();
-    this.generate();
-    alert( JSON.stringify(this.card));
+    // this.generate();
+    this.setHospitalId();
     this.registrationForm = this.formBuilder.group({
-      First_Name: ['', Validators.required],
-      Middle_Name: ['', Validators.required],
-      Last_Name: ['', Validators.required],
-      Phone_Number: ['' ,[Validators.required, Validators.pattern("^[0][0,1,2,3,4,5,6,7,8,9]{9}$")]],
-      Information: ['', Validators.required],
-      Card_Number: ['', Validators.required],
-      Age: [this.card.generated, Validators.required]
+      firstName: ['', Validators.required],
+      middleName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phoneNumber: ['' ,[Validators.required, Validators.pattern("^[0][0,1,2,3,4,5,6,7,8,9]{9}$")]],
+      customerCardNo: ['', Validators.required],
+      custAge: ['', Validators.required],
+      hospitalId: [2,Validators.required]
     });
-  
-    
+   
   }
 
+  get f(){
+    return this.registrationForm.controls;
+  }
   generate(){
-    this.dataService.getCardNumber()
-    .subscribe((result:cardNumber)=>{
-      this.card=result;
-      
-    });
-  }  
+    this.id=this.setHospitalId();  
+    this.dataService.getCardNumber(this.id)
+      .subscribe((result:any)=>{
+        this.cardInfo=result,
+        this.card_Number=result.generated;
+        this.fName=this.f.firstName.value;this.mName=this.f.middleName.value;
+        this.lName=this.f.lastName.value;this.phone=this.f.phoneNumber.value;
+        this.age=this.f.custAge.value;this.hospId=this.f.hospitalId.value;
+        this.registrationForm.setValue(
+          {
+            firstName:this.fName,
+            middleName:this.mName,
+            lastName:this.lName,
+            phoneNumber:this.phone,
+            customerCardNo:this.card_Number,
+            custAge:this.age,
+            hospitalId:this.hospId
+          }
+      );
 
-setHospitalId(){
-  this.hospitalId=1;
+      });
+    } 
+
+setHospitalId():number{
+  this.hospitalId=2;
+  return this.hospitalId;
 }
-
+ 
 
 getCardNumberStatus(){
   this.autoGenerate=true;
@@ -64,7 +86,8 @@ openModal(modal,myBtn){
 }
 
 appoint(){
-  this.router.navigateByUrl('register/appointment/1');
+  this.dataSharingService.sendInfo(this.customerInfo);
+  this.router.navigateByUrl('register/appointment');
 }
 
 goBack(){
@@ -80,16 +103,18 @@ onSubmit() {
       // Get the button that opens the modal
       var btn = document.getElementById("myBtn");
 
-      this.openModal(modal,btn);
+      
 
       // alert(JSON.stringify(this.registrationForm.value))
-
+      this.hospitalId=1
       this.dataService.postRegisterInfo(this.registrationForm.value)
         .subscribe((result:any)=>{
           this.customerInfo=result;
+          alert(JSON.stringify(this.customerInfo))
         });
-      this.id=this.customerInfo.Id; 
-      this.router.navigateByUrl('/appointment/'+this.id);
+
+        this.alert="Registration is Successful !!!";
+        this.openModal(modal,btn);
     }
   }
 

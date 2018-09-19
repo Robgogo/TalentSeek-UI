@@ -1,6 +1,8 @@
-<div class="container">
+﻿<div class="container">
   <div class="card card-container">
-      
+    <div class="alert alert-error">
+        {{ error }}
+    </div>
       <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
           <span id="reauth-email" class="reauth-email"></span>
         <input type="email" id="inputEmail" class="form-control" [class.is-invalid]="loginForm.get('User_Name').invalid && loginForm.get('User_Name').dirty" 

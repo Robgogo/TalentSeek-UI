@@ -1,11 +1,11 @@
 export class Customer
 {
-    Id:number;
-    First_Name:string;
-    Middle_Name:string;
-    Last_Name:string;
-    Age:number;
-    Phone_Number:string;
-    Information:string;
-    Card_Number:string;
+    id:number;
+    hospitalId:number;
+    firstName:string;
+    middleName:string;
+    lastName:string;
+    custAge:number;
+    phoneNumber:string;
+    customerCardNo:string;
 }

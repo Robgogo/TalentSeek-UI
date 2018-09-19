@@ -17,12 +17,12 @@
       <tbody>
         <tr *ngFor="let customer of customerList">
           <td>{{customer.id}}</td>
-          <td>{{customer.First_Name}}</td>
-          <td>{{customer.Middle_Name}}</td>
-          <td>{{customer.Last_Name}}</td>
-          <td>{{customer.Phone_Number}}</td>
-          <td>{{customer.Age}}</td>
-          <td>{{customer.Card_Number}}</td>
+          <td>{{customer.firstName}}</td>
+          <td>{{customer.middleName}}</td>
+          <td>{{customer.lastName}}</td>
+          <td>{{customer.phoneNumber}}</td>
+          <td>{{customer.custAge}}</td>
+          <td>{{customer.customerCardNo}}</td>
           <td><button type="Submit" (click)="appointment(customer)" class="btn btn-success" >Appoint</button></td>
           <td><button type="Submit" (click)="editCustomerInfo(customer)" class="btn btn-primary" >Edit</button></td>
           <td><button type="Submit" onClick="return confirm('Are you sure you want to delete the customer?')" class="btn btn-danger">Delete</button></td>
