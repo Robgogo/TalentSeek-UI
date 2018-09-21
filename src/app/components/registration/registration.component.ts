@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DataService } from "../../services/data.service";
 import { DataSharingService } from "../../services/data-sharing.service";
 import { Customer } from "../../Customer";
+import {  PhoneNumberValidation } from "../../classes/PhoneNumberValidation";
 import { cardNumber } from "../../CardNumber";
 
 @Component({
@@ -11,10 +12,11 @@ import { cardNumber } from "../../CardNumber";
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
+
 export class RegistrationComponent implements OnInit {
   
   registrationForm: FormGroup;
-  fName:string;mName:string;lName:string;phone:string;info:string;age:number;hospId:number;
+  fName:string;mName:string;lName:string;phone:string;confPhone:string;info:string;age:number;hospId:number;
   customerInfo:Array<Customer>=[];
   num:number;
   hospitalId:number;
@@ -33,10 +35,13 @@ export class RegistrationComponent implements OnInit {
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNumber: ['' ,[Validators.required, Validators.pattern("^[0][0,1,2,3,4,5,6,7,8,9]{9}$")]],
+      phoneNumber: ['' ,[Validators.required, Validators.pattern("^[+][0,1,2,3,4,5,6,7,8,9]{12}$")]],
+      confirmPhoneNumber:['',Validators.required],
       customerCardNo: ['', Validators.required],
-      custAge: ['', Validators.required],
+      // custAge: ['', Validators.required],
       hospitalId: [2,Validators.required]
+    },{
+      validator: PhoneNumberValidation.MatchPhoneNumber // Custom validation method
     });
    
   }
@@ -52,15 +57,18 @@ export class RegistrationComponent implements OnInit {
         this.card_Number=result.generated;
         this.fName=this.f.firstName.value;this.mName=this.f.middleName.value;
         this.lName=this.f.lastName.value;this.phone=this.f.phoneNumber.value;
-        this.age=this.f.custAge.value;this.hospId=this.f.hospitalId.value;
+        // this.age=this.f.custAge.value;
+        this.hospId=this.f.hospitalId.value;this.confPhone=this.f.confirmPhoneNumber.value
+        ;
         this.registrationForm.setValue(
           {
             firstName:this.fName,
             middleName:this.mName,
             lastName:this.lName,
             phoneNumber:this.phone,
+            confirmPhoneNumber:this.confPhone,
             customerCardNo:this.card_Number,
-            custAge:this.age,
+            // custAge:this.age,
             hospitalId:this.hospId
           }
       );

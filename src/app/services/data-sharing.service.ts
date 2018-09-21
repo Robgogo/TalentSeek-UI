@@ -9,6 +9,7 @@ import { Customer } from "../Customer";
 export class DataSharingService {
 
   private customerInfo: any;
+  private appointmentInfo: any;
 
   constructor() { }
 
@@ -21,6 +22,27 @@ export class DataSharingService {
   }
   getCustomerInfo():Observable<Customer>{
     return of(this.customerInfo);
+  }
+
+  deleteAppointment(deleteInfo:any){
+    this.appointmentInfo=deleteInfo;
+  }
+
+  sendAppointmentInfo(appointmentInfo:any){
+    this.appointmentInfo=appointmentInfo;
+  }
+
+  getAppointmentInfo():Observable<any>{
+    return of(this.appointmentInfo);
+  }
+
+  shareHospitalId(id:number){
+    var hospitalId=id;
+    return hospitalId;
+  }
+  shareAppointmentInfo(appointmentInfo:any){
+    this.appointmentInfo=appointmentInfo
+    return of(this.appointmentInfo);
   }
   
 }

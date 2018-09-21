@@ -6,6 +6,8 @@ import { HttpClientModule,HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 import { ErrorInterceptor } from "./Auth/error.interceptor";
 import { JwtInterceptor } from "./Auth/jwt.interceptor";
+import { DatePipe } from '@angular/common';
+
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -18,6 +20,9 @@ import { SearchComponent } from './components/search/search.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { UpdateComponent } from './components/update/update.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { DateComponent } from './components/date/date.component';
+import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
+import { UpdateAppointmentComponent } from './components/update-appointment/update-appointment.component';
 
 
 
@@ -33,7 +38,10 @@ import { RegistrationComponent } from './components/registration/registration.co
     SearchComponent,
     AppointmentComponent,
     UpdateComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DateComponent,
+    AppointmentListComponent,
+    UpdateAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +54,7 @@ import { RegistrationComponent } from './components/registration/registration.co
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

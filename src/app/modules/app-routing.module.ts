@@ -8,10 +8,16 @@ import { GenerateCardNoComponent } from '../components/generate-card-no/generate
 import { SearchComponent } from '../components/search/search.component';
 import { AppointmentComponent } from '../components/appointment/appointment.component';
 import { UpdateComponent } from '../components/update/update.component';
+import { AppointmentListComponent } from '../components/appointment-list/appointment-list.component';
+import { UpdateAppointmentComponent } from '../components/update-appointment/update-appointment.component';
 import { RegistrationComponent } from '../components/registration/registration.component';
+import { DateComponent } from "../components/date/date.component";
 import { AuthGuard } from "../Auth/auth.guard";
 
 const routes: Routes = [
+  { path:'date',component: DateComponent },
+  { path: 'appointment/updateAppointment/:id', component: UpdateAppointmentComponent },
+  { path: 'AppointmentList', component: AppointmentListComponent },
   { path: 'customer/updateCustomers/:id', component: UpdateComponent },
   { path: 'register/appointment', component: AppointmentComponent },
   { path: 'get/customerlist', component: SearchComponent },
