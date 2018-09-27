@@ -10,6 +10,11 @@ export class DataSharingService {
 
   private customerInfo: any;
   private appointmentInfo: any;
+  public hospitalInfo: any;
+  public internetConnected = true;
+
+  public loggedInSource = new BehaviorSubject(localStorage.getItem('staff') != null);
+  public loggedIn$ = this.loggedInSource.asObservable();
 
   constructor() { }
 
@@ -17,10 +22,8 @@ export class DataSharingService {
   sendInfo(info:any){
     this.customerInfo=info;
   }
-  sendCustomerInfo(customer:Customer){
-    this.customerInfo=customer;
-  }
-  getCustomerInfo():Observable<Customer>{
+
+  getCustomerInfo():Observable<any>{
     return of(this.customerInfo);
   }
 

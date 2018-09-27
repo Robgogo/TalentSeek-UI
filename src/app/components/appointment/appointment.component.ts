@@ -1,8 +1,8 @@
 import { Component, OnInit ,Input} from '@angular/core';
 import { DataSharingService } from "../../services/data-sharing.service";
 import { DataService } from "../../services/data.service";
-import { Customer } from "../../Customer";
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 import { Status } from "../../Status";
 import { Department } from "../../Department";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,18 +16,21 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AppointmentComponent implements OnInit {
   
   appointmentForm: FormGroup;
-  customer: Customer;
+  customer: any;
   appDate:Date;
+  today:string;
+  myDate:Date;
   customerId:number;statusId:any;
   statusList:Status[];
   departmentList:Department[];
   isClicked=false;
   id:number;
 
-  constructor(private router: Router,private formBuilder: FormBuilder,private dataService: DataService ,private dataSharingService: DataSharingService) { }
+  constructor(private datePipe: DatePipe,private router: Router,private formBuilder: FormBuilder,private dataService: DataService ,private dataSharingService: DataSharingService) { }
 
   ngOnInit() {
     this.getCustomerInfo();
+    // alert(JSON.stringify(this.customer));
     this.getDepartments();
     this.getStatus();
     this.appointmentForm = this.formBuilder.group({
@@ -36,12 +39,13 @@ export class AppointmentComponent implements OnInit {
       medicDeptId:['',Validators.required],
       customerId: [this.customer.id,Validators.required],
       cardNumber:[this.customer.customerCardNo,Validators.required],
-      updater:[1,Validators.required],
-      creator:[1,Validators.required],
-      hospitalId:[this.customer.hospitalId,Validators.required],
       appointmetStatus:[true,Validators.required]
 
     });
+    // new Date().getTime() + 12 * 60 * 60 * 1000
+    this.myDate=new Date();
+    // this.myDate.setDate(this.myDate.getDate()+1);
+    this.today=this.datePipe.transform(this.myDate, 'yyyy-MM-ddTHH:mm'); //whatever format you need. 
   }
 
   openModal(modal){
@@ -54,10 +58,11 @@ export class AppointmentComponent implements OnInit {
     return this.appointmentForm.controls;
   }
   sendSMS(){
-    this.isClicked=true;
+    // alert(JSON.stringify(this.appointmentForm.value));
     this.dataService.postAppointmentInfo(this.appointmentForm.value)
       .subscribe(res=>{
-          alert(JSON.stringify(res));
+          // alert(JSON.stringify(res));
+          this.isClicked=true;
       });
       this.dataSharingService.shareAppointmentInfo(this.appointmentForm.value); 
 
@@ -73,8 +78,8 @@ export class AppointmentComponent implements OnInit {
   }
 
   getDepartments(){
-    this.id=this.customer.hospitalId;
-    this.dataService.getDepartmentList(this.id).subscribe((result:Department[])=>{
+    // this.id=this.customer.hospitalId;
+    this.dataService.getDepartmentList().subscribe((result:Department[])=>{
       this.departmentList=result;
     });
   }
@@ -84,8 +89,8 @@ export class AppointmentComponent implements OnInit {
     });
   }
   getStatus(): void {
-    this.id=this.customer.hospitalId;
-    this.dataService.getStatusList(this.id).subscribe((result:Status[])=>{
+    // this.id=this.customer.hospitalId;
+    this.dataService.getStatusList().subscribe((result:Status[])=>{
       this.statusList=result
     });
   }

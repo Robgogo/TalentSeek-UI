@@ -15,7 +15,7 @@
             </div> 
           </div>
           <div class=" form-group row">
-            <label class="required col-3 col-form-label">Middle Name</label>
+            <label class=" col-3 col-form-label">Middle Name</label>
             <div class="col-9">
                 <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('middleName').invalid && registrationForm.get('middleName').dirty" 
                   formControlName="middleName" name="middleName" id="middleName" placeholder="Middle Name" required />
@@ -37,10 +37,11 @@
           <div class=" form-group row">
             <label class="col-3 col-form-label">Age</label>
             <div class="col-9">
-                <input type="name" class="form-control"  name="custAge" placeholder="Age" />
-                <!-- <small class="form-text" [hidden]="registrationForm.get('custAge').valid || registrationForm.get('custAge').pristine">
+                <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('custAge').invalid && registrationForm.get('custAge').dirty"
+                 formControlName="custAge" name="custAge" placeholder="Age" />
+                <small class="form-text" [hidden]="registrationForm.get('custAge').valid || registrationForm.get('custAge').pristine">
                   Age is required
-                </small>   -->
+                </small>  
             </div> 
           </div>
           <div class=" form-group row">
@@ -121,3 +122,4 @@
       </form><!-- /form -->
   </div><!-- /card-container -->
 </div><!-- /container -->
+

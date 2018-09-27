@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { DataService } from "../../services/data.service";
 import { DataSharingService } from "../../services/data-sharing.service";
 import { Customer } from "../../Customer";
+import { AuthenticationService } from '../../Auth/authentication.service';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +16,10 @@ export class SearchComponent implements OnDestroy, OnInit {
   id:number;
   customerList: any=[];
   dtTrigger: Subject<any> = new Subject();
-  constructor(private router :Router,private dataService:DataService,private dataSharingService:DataSharingService) { }
+  constructor(private router :Router,
+    private dataService:DataService,
+    private authenticationService: AuthenticationService,
+    private dataSharingService:DataSharingService) { }
 
   ngOnInit() {
     this.dtOptions = {

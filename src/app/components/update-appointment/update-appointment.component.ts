@@ -14,10 +14,12 @@ export class UpdateAppointmentComponent implements OnInit {
   info:any;
   updateForm: FormGroup;
   id:number;
+  today:string;
+  myDate:Date;
   latestDate:string;
   isClicked:boolean;
   appointmentInfo:any;
-  constructor(private router:Router,public datepipe: DatePipe,private dataService:DataService,private dataSharingService: DataSharingService,private formBuilder: FormBuilder) { }
+  constructor(private router:Router,private datepipe: DatePipe,private dataService:DataService,private dataSharingService: DataSharingService,private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.getAppointmentInfo();
@@ -28,6 +30,11 @@ export class UpdateAppointmentComponent implements OnInit {
       appointmentDate: [this.latestDate, Validators.required],
       id:[this.info.id,Validators.required]
     });
+
+      // new Date().getTime() + 12 * 60 * 60 * 1000
+      this.myDate=new Date();
+      // this.myDate.setDate(this.myDate.getDate()+1);
+      this.today=this.datepipe.transform(this.myDate, 'yyyy-MM-ddTHH:mm'); //whatever format you need. 
   }
 
   getAppointmentInfo(){

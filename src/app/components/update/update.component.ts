@@ -33,8 +33,7 @@ export class UpdateComponent implements OnInit {
       lastName: [this.info.lastName, Validators.required],
       phoneNumber: [this.info.phoneNumber ,[Validators.required, Validators.pattern("^[0][0,1,2,3,4,5,6,7,8,9]{9}$")]],
       customerCardNo: [this.info.customerCardNo, Validators.required],
-      custAge: [this.info.custAge, Validators.required],
-      hospitalId:[this.info.hospitalId,Validators.required]
+      custAge: [this.info.custAge, Validators.required]
       // hospitalAdmin: ['', Validators.required],
       // password: ['', [Validators.required, Validators.minLength(8)]],
       // confirmPassword: ['', Validators.required],

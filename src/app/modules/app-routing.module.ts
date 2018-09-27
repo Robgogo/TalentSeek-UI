@@ -11,18 +11,19 @@ import { UpdateComponent } from '../components/update/update.component';
 import { AppointmentListComponent } from '../components/appointment-list/appointment-list.component';
 import { UpdateAppointmentComponent } from '../components/update-appointment/update-appointment.component';
 import { RegistrationComponent } from '../components/registration/registration.component';
-import { DateComponent } from "../components/date/date.component";
+import { ReportComponent } from "../components/report/report.component";
 import { AuthGuard } from "../Auth/auth.guard";
 
 const routes: Routes = [
-  { path:'date',component: DateComponent },
-  { path: 'appointment/updateAppointment/:id', component: UpdateAppointmentComponent },
-  { path: 'AppointmentList', component: AppointmentListComponent },
-  { path: 'customer/updateCustomers/:id', component: UpdateComponent },
-  { path: 'register/appointment', component: AppointmentComponent },
-  { path: 'get/customerlist', component: SearchComponent },
+  { path:'dailyAppointmentReport',component: ReportComponent , canActivate: [AuthGuard] },
+  { path:'app',component: AppointmentComponent },
+  { path: 'appointment/updateAppointment/:id', component: UpdateAppointmentComponent , canActivate: [AuthGuard] },
+  { path: 'AppointmentList', component: AppointmentListComponent ,canActivate: [AuthGuard]},
+  { path: 'customer/updateCustomers/:id', component: UpdateComponent ,canActivate: [AuthGuard]},
+  { path: 'register/appointment', component: AppointmentComponent ,canActivate: [AuthGuard]},
+  { path: 'get/customerlist', component: SearchComponent ,canActivate: [AuthGuard]},
   { path: 'generateCard', component: GenerateCardNoComponent },
-  { path: 'register/customer', component: RegistrationComponent },
+  { path: 'register/customer', component: RegistrationComponent ,canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'login/:message', component: LoginComponent },
   { path: 'home', component: HomeComponent },

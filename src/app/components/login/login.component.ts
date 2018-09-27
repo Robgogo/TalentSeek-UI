@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
       const message = this.route.snapshot.paramMap.get('message');
       this.error = message;
       this.loginForm = this.formBuilder.group({
-          User_Name: ['', Validators.required],
-          Password: ['', Validators.required]
+          username: ['', Validators.required],
+          password: ['', Validators.required]
       });
 
       // reset login status
@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
       this.submitted = true;
-
+        // alert(JSON.stringify(this.loginForm.value));
       // stop here if form is invalid
       if (this.loginForm.invalid) {
           return;
       }
 
-      this.authenticationService.login(this.f.User_Name.value, this.f.Password.value)
+      this.authenticationService.login(this.f.username.value, this.f.password.value)
           .pipe(first())
           .subscribe(
               data => {

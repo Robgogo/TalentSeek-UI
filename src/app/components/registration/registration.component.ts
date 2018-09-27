@@ -23,14 +23,17 @@ export class RegistrationComponent implements OnInit {
   id:number;
   alert:string;
   cardInfo:any;
+  customerData:any={};
   card_Number:string;
-  autoGenerate:boolean;
+  autoGenerater:boolean;
+  auto:any=[];
   constructor(private router: Router,private formBuilder: FormBuilder,private dataService:DataService,private dataSharingService:DataSharingService) { }
 
   ngOnInit() {
-    this.getCardNumberStatus();
+    
     // this.generate();
-    this.setHospitalId();
+    this.isGenerate();
+    this.getCardNumberStatus();
     this.registrationForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
@@ -38,28 +41,33 @@ export class RegistrationComponent implements OnInit {
       phoneNumber: ['' ,[Validators.required, Validators.pattern("^[+][0,1,2,3,4,5,6,7,8,9]{12}$")]],
       confirmPhoneNumber:['',Validators.required],
       customerCardNo: ['', Validators.required],
-      // custAge: ['', Validators.required],
-      hospitalId: [2,Validators.required]
+      custAge: ['',Validators.required]
     },{
       validator: PhoneNumberValidation.MatchPhoneNumber // Custom validation method
     });
    
   }
 
+  isGenerate(){
+    this.dataService.isAutoGenerate().subscribe((res:any[])=>{
+      this.auto=res;
+      this.autoGenerater=this.auto[0].autoGenerate;
+  
+    });
+  }
   get f(){
     return this.registrationForm.controls;
   }
   generate(){
-    this.id=this.setHospitalId();  
-    this.dataService.getCardNumber(this.id)
+    // this.id=this.setHospitalId();  
+    this.dataService.getCardNumber()
       .subscribe((result:any)=>{
         this.cardInfo=result,
         this.card_Number=result.generated;
         this.fName=this.f.firstName.value;this.mName=this.f.middleName.value;
         this.lName=this.f.lastName.value;this.phone=this.f.phoneNumber.value;
-        // this.age=this.f.custAge.value;
-        this.hospId=this.f.hospitalId.value;this.confPhone=this.f.confirmPhoneNumber.value
-        ;
+        this.age=this.f.custAge.value;
+        this.confPhone=this.f.confirmPhoneNumber.value;
         this.registrationForm.setValue(
           {
             firstName:this.fName,
@@ -68,8 +76,8 @@ export class RegistrationComponent implements OnInit {
             phoneNumber:this.phone,
             confirmPhoneNumber:this.confPhone,
             customerCardNo:this.card_Number,
-            // custAge:this.age,
-            hospitalId:this.hospId
+            custAge:this.age,
+            
           }
       );
 
@@ -83,8 +91,7 @@ setHospitalId():number{
  
 
 getCardNumberStatus(){
-  this.autoGenerate=true;
-  return this.autoGenerate;
+  return this.autoGenerater;
 }
 
 openModal(modal,myBtn){
@@ -102,27 +109,38 @@ goBack(){
   this.router.navigateByUrl('get/customerlist');
 }
 
+success(){
+  
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+  this.alert="Registration is Successful !!!";
+  this.openModal(modal,btn);
+
+}
+
 onSubmit() {
     if(this.registrationForm.valid){
 
-      // Get the modal
-      var modal = document.getElementById('myModal');
-
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
+      // alert(JSON.stringify(this.registrationForm.value))
+      
+      this.customerData.custAge=this.f.custAge.value;
+      this.customerData.firstName=this.f.firstName.value;
+      this.customerData.middleName=this.f.middleName.value;
+      this.customerData.lastName=this.f.lastName.value;
+      this.customerData.phoneNumber=this.f.phoneNumber.value;
+      this.customerData.customerCardNo=this.f.customerCardNo.value;
 
       
-
-      // alert(JSON.stringify(this.registrationForm.value))
-      this.hospitalId=1
-      this.dataService.postRegisterInfo(this.registrationForm.value)
+      this.dataService.postRegisterInfo(this.customerData)
         .subscribe((result:any)=>{
           this.customerInfo=result;
-          alert(JSON.stringify(this.customerInfo))
+          alert(JSON.stringify(this.customerInfo));
+          this.success();
         });
-
-        this.alert="Registration is Successful !!!";
-        this.openModal(modal,btn);
+        
     }
   }
 

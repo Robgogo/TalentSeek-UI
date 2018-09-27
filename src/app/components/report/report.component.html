@@ -1,0 +1,62 @@
+<div class="container" *ngIf="displayer">
+  <div class="card card-container">
+    <div class="alert alert-error">
+        {{ error }}
+    </div>
+
+      <form class="form-signin" [formGroup]="reportForm" (ngSubmit)="onSubmit()" novalidate>
+          {{newDate}}
+        <span id="reauth-email" class="reauth-email"></span>
+        <div class=" form-group row">
+          <label class="col-4 col-form-label"><b> Date : </b></label>
+          <div class="col-8">
+            <input type="date" name="reportDate" class="form-control" [class.is-invalid]="reportForm.get('appointmentCreatedDate').invalid && reportForm.get('appointmentCreatedDate').dirty" 
+              formControlName="appointmentCreatedDate" required>
+            <small class="form-text" [hidden]="reportForm.get('appointmentCreatedDate').valid || reportForm.get('appointmentCreatedDate').pristine">
+              Date is required
+            </small>
+          </div> 
+        </div>
+        <div class="row">
+          
+          <button class="btn btn-lg btn-primary" style="width: 200px;margin-left: 180px;" [disabled]="reportForm.invalid" type="submit">Get Report</button>
+        </div>
+        
+      </form><!-- /form -->
+     
+  </div><!-- /card-container -->
+</div><!-- /container -->
+
+<div *ngIf="!displayer" id="print-section">
+  <div style="padding-left:20px" id="new">
+    <h3 style="text-align: center">Daily Appointment Report</h3>
+    
+  </div>
+  <br>
+  <div class="container">
+      <table class="row-border hover" id="table">
+          <thead>
+            <tr>
+              <th>Hospital Name</th>
+              <th>Customer Name</th>
+              <th>Appointment Date</th>
+              <th>Department Name</th>
+              <th>Creator Name</th>
+              <th>Report Created Date</th>  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of dailyReportData">
+              <td>{{report.hospitalName }}</td>
+              <td>{{report.customerName }}</td>
+              <td>{{report.appointmentDate}}</td>
+              <td>{{report.departmentName}}</td>
+              <td>{{report.createrName}}</td>
+              <td>{{report.appointmentCreatedDate}}</td>
+            </tr>
+          </tbody>
+    </table>
+    <button class="btn btn-primary" style="margin-top: 12px;width: 70px;" (click)="print()" id="printButton">Print</button>
+  </div>
+
+</div>

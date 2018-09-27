@@ -11,7 +11,7 @@
         <div class=" form-group row">
           <label class="col-4 col-form-label"><b>Appointment Date : </b></label>
           <div class="col-8">
-            <input type="datetime-local" name="appointmentDate" class="form-control" [class.is-invalid]="updateForm.get('appointmentDate').invalid && updateForm.get('appointmentDate').dirty" 
+            <input type="datetime-local" min="{{today}}" name="appointmentDate" class="form-control" [class.is-invalid]="updateForm.get('appointmentDate').invalid && updateForm.get('appointmentDate').dirty" 
               formControlName="appointmentDate" required>
             <small class="form-text" [hidden]="updateForm.get('appointmentDate').valid || updateForm.get('appointmentDate').pristine">
               Appointment Date is required

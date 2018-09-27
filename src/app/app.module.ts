@@ -7,6 +7,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { ErrorInterceptor } from "./Auth/error.interceptor";
 import { JwtInterceptor } from "./Auth/jwt.interceptor";
 import { DatePipe } from '@angular/common';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -23,6 +25,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { DateComponent } from './components/date/date.component';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { UpdateAppointmentComponent } from './components/update-appointment/update-appointment.component';
+import { ReportComponent } from './components/report/report.component';
 
 
 
@@ -41,7 +44,8 @@ import { UpdateAppointmentComponent } from './components/update-appointment/upda
     RegistrationComponent,
     DateComponent,
     AppointmentListComponent,
-    UpdateAppointmentComponent
+    UpdateAppointmentComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { UpdateAppointmentComponent } from './components/update-appointment/upda
      FormsModule,
     ReactiveFormsModule,
     DataTablesModule,
-    HttpClientModule
+    HttpClientModule,
+    DlDateTimePickerDateModule,NgbModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

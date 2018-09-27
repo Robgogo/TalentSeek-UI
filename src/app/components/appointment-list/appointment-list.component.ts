@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { temp } from "../../tempoData";
 import { DataService } from "../../services/data.service";
 import { DataSharingService } from "../../services/data-sharing.service";
+import { AuthenticationService } from "../../Auth/authentication.service";
 
 @Component({
   selector: 'app-appointment-list',
@@ -22,7 +23,9 @@ export class AppointmentListComponent implements OnInit,OnDestroy {
 
   dtTrigger: Subject<any> = new Subject();
   hospitalId=2;
-  constructor(private router: Router,private dataService:DataService,private dataSharingService:DataSharingService) { }
+  constructor(private router: Router,
+    private authenticationService:AuthenticationService,
+    private dataService:DataService,private dataSharingService:DataSharingService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -30,7 +33,7 @@ export class AppointmentListComponent implements OnInit,OnDestroy {
       // pageLength: 2
     };
 
-    this.dataService.getAppointmentList(this.hospitalId).subscribe(result=>{
+    this.dataService.getAppointmentList().subscribe(result=>{
       this.appointmentList=result;
       this.dtTrigger.next();
     });
@@ -72,13 +75,14 @@ export class AppointmentListComponent implements OnInit,OnDestroy {
     // // this.dataSharingService.deleteAppointment(customer);
     this.dataService.cancelAppointment(this.tempData)
       .subscribe(res=>{
-        alert(JSON.stringify(res));
+        // alert(JSON.stringify(res));
+        this.goBack();
+        window.location.reload();
+        this.isClicked=true;
+
       });
-    
-    window.location.reload();
-    this.goBack();
-    this.isClicked=true;
-    // this.router.navigateByUrl('register/appointment');
+     
+
   }
 
 
