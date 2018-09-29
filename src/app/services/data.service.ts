@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Customer } from '../Customer';
-import { cardNumber } from "../CardNumber";
-import { Status } from '../Status';
 import { Observable,of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseUrlService } from './base-url.service';
@@ -31,34 +28,15 @@ export class DataService {
   baseurlCancelAppointmentDate=this.baseUrl.baseUrl+"postStaff/deleteAppointment";
   baseurlGetSingleCustomerInfo=this.baseUrl.baseUrl+ "";
   baseurlUpdateCustomer= this.baseUrl.baseUrl + "postStaff/updateCustomers";
-  // statusUrl="http://localhost:3000/api/status";
-  // customerURL="http://localhost:3000/api/customer";
-  // customersURL="http://localhost:3000/api/customers";
-  // appointmentURL="http://localhost:3000/api/appointmentInfo";
-  // registerURL="http://localhost:3000/api/register";
-  // cardURL="http://localhost:3000/api/cardNumber";
-
-  // getCustomer():Observable<any>{ 
-  //   return this.http.get(this.customerURL);
-  // }
-
-  // getStatus(){
-  //   return this.http.get(this.statusUrl);
-  // }
-
-  // getAppointmentInfo(){ 
-  //   return this.http.get(this.appointmentURL);
-  // }
-
-  // getCustomerList(){ 
-  //   return this.http.get(this.customersURL);
-  // }
-
-  // getCardNumberInfo(id:number):Observable<any>{
-  //   return this.http.get<any>(this.cardURL);
-  // }
+  baseurlCheckCredentials= this.baseUrl.baseUrl+ "";
+  baseurlGetCurrentUser=this.baseUrl.baseUrl+ "users/me";
+  
 
   // Endpoint Url
+
+  getCurrentUser(){
+    return this.http.get(this.baseurlGetCurrentUser);
+  }
   getAppointmentList(){
     return this.http.get(this.baseurlGetAppointments);
   }
@@ -75,6 +53,10 @@ export class DataService {
   
   getCardNumber():Observable<any>{
     return this.http.get<any>(this.baseurlGetCardNumber);
+  }
+
+  checkCredintial(info:any){
+    return this.http.post<any>(this.baseurlUpdateAppointmentDate,JSON.stringify(info),httpOptions);
   }
 
   cancelAppointment(info:any){

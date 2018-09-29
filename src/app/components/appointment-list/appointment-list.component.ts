@@ -16,6 +16,7 @@ export class AppointmentListComponent implements OnInit,OnDestroy {
   id:number;
   statusId:number;
   isClicked=false;
+  error:boolean;
   appointment:any;
   appointmentList: any=[];
   tempData:{};
@@ -37,6 +38,7 @@ export class AppointmentListComponent implements OnInit,OnDestroy {
       this.appointmentList=result;
       this.dtTrigger.next();
     });
+    this.error=false;
     
   }
 
@@ -69,16 +71,25 @@ export class AppointmentListComponent implements OnInit,OnDestroy {
 
     
     // this.myData.push('id',appointment.id,'statusId',appointment.statusId);
-    this.tempData={id:this.appointment.id,statusId:this.appointment.statusId};
+    this.tempData={id:this.appointment.id,customerId:this.appointment.statusId};
   
     
     // // this.dataSharingService.deleteAppointment(customer);
+    // alert(JSON.stringify(this.tempData));
     this.dataService.cancelAppointment(this.tempData)
       .subscribe(res=>{
         // alert(JSON.stringify(res));
-        this.goBack();
-        window.location.reload();
-        this.isClicked=true;
+        if(!res.status){
+          this.goBack();
+          window.location.reload();
+          this.isClicked=true;
+        }
+        else{
+          this.error=true;
+          this.goBack();
+        }
+        // alert(JSON.stringify(res));
+
 
       });
      

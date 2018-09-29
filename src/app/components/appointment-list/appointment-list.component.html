@@ -2,10 +2,14 @@
   <div *ngIf=" isClicked  "  class="alert alert-success" style="text-align: center;">
         Appointment canceled Successfully !!!
     </div><br>
+    <div *ngIf=" error  "  class="alert alert-danger" style="text-align: center;">
+      Appointment can not be canceled !!!
+  </div><br>
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id="table">
       <thead>
         <tr>
         <th>Customer ID</th>
+        <th>id</th>
         <th>Card Number</th>
         <th>Appointment Date</th>
         <th>Action</th>
@@ -15,6 +19,7 @@
       <tbody>
         <tr *ngFor="let appointment of appointmentList">
           <td>{{appointment.customerId}}</td>
+          <td>{{appointment.id}}</td>
           <td>{{ appointment.cardNumber}}</td>
           <td>{{appointment.appointmentDate | date:'dd-MM-yyyy    HH:mm'}}</td>
           <td><button type="Submit" (click)="editAppointmentInfo(appointment)" class="btn btn-primary" style="width:70px;" >Edit</button></td>

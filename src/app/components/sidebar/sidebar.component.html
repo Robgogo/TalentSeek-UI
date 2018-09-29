@@ -19,7 +19,7 @@
           <div [hidden]="!loggedIn" class="btn-group mr-3" style="padding-right: 10px">
             <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
                 <button class="btn btn-outline-success cornerButton" ngbDropdownToggle>
-                    Hospital Staff
+                    {{ CurrentUser }}
                 </button>
                 <div class="dropdown-menu" ngbDropdownMenu>
                 <button routerLink="register/customer" class="dropdown-item">Register</button>

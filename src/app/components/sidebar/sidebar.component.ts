@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../Auth/authentication.service';
 import { Router } from "@angular/router";
+import { DataService } from "../../services/data.service";
 import { DataSharingService } from './../../services/data-sharing.service';
 declare var jquery:any;
 declare var $ :any;
@@ -15,14 +16,22 @@ export class SidebarComponent implements OnInit {
   sidebarOpened = true;
   firstTime = true;
   loggedIn;
+  CurrentUser:string;
+  currentUser:any={};
 
   constructor(  private dataSharing: DataSharingService,
     private authService: AuthenticationService,
+    private dataService: DataService,
     private router: Router) {
       this.loggedIn = this.authService.isLoggedIn()
      }
 
   ngOnInit() {
+    this.dataService.getCurrentUser()
+      .subscribe(res=>{
+      this.currentUser=res;
+      this.CurrentUser=this.currentUser.username;
+    });
     this.dataSharing.loggedIn$.subscribe(
       loginStatus => {
         this.loggedIn = loginStatus

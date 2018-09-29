@@ -14,7 +14,7 @@ export class AuthenticationService {
         private router: Router) { }
 
     login(username: string, password: string) {
-        return this.http.post<any>('http://192.168.1.199:8080/uniMed_eCard/rest/auth', {
+        return this.http.post<any>('http://192.168.1.199:8080/uniMed_eCard/rest/auth/hospitalStaff', {
                 username: username, 
                 password: password
              }).pipe(map((res:any) => {
