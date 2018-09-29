@@ -3,6 +3,7 @@
     <div class="alert alert-danger" *ngIf="error">
         {{ error }}
     </div>
+    <div class="text-success" *ngIf="!error && successMessage">{{successMessage}}</div>
       <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
           <span id="reauth-email" class="reauth-email"></span>
         <input type="email" id="inputEmail" class="form-control" [class.is-invalid]="loginForm.get('username').invalid && loginForm.get('username').dirty" 

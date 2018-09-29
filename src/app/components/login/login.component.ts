@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = '';
-
+  successMessage = '';
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
       const message = this.route.snapshot.paramMap.get('message');
       this.error = message;
+      this.successMessage = this.route.snapshot.paramMap.get('successMessage');
       this.loginForm = this.formBuilder.group({
           username: ['', Validators.required],
           password: ['', Validators.required]

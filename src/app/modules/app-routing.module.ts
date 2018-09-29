@@ -13,7 +13,7 @@ import { UpdateAppointmentComponent } from '../components/update-appointment/upd
 import { RegistrationComponent } from '../components/registration/registration.component';
 import { ReportComponent } from "../components/report/report.component";
 import { AuthGuard } from "../Auth/auth.guard";
-
+import { ResetPasswordComponent } from './../components/reset-password/reset-password.component';
 const routes: Routes = [
   { path:'dailyAppointmentReport',component: ReportComponent , canActivate: [AuthGuard] },
   { path:'app',component: AppointmentComponent },
@@ -24,8 +24,10 @@ const routes: Routes = [
   { path: 'get/customerlist', component: SearchComponent ,canActivate: [AuthGuard]},
   { path: 'generateCard', component: GenerateCardNoComponent },
   { path: 'register/customer', component: RegistrationComponent ,canActivate: [AuthGuard]},
+  { path: 'reset-password', component: ResetPasswordComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'login/:message', component: LoginComponent },
+  { path: 'login/success/:successMessage', component: LoginComponent }, // login with success message
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent}

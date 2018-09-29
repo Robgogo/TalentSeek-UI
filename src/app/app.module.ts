@@ -26,6 +26,7 @@ import { DateComponent } from './components/date/date.component';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { UpdateAppointmentComponent } from './components/update-appointment/update-appointment.component';
 import { ReportComponent } from './components/report/report.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 
@@ -45,7 +46,8 @@ import { ReportComponent } from './components/report/report.component';
     DateComponent,
     AppointmentListComponent,
     UpdateAppointmentComponent,
-    ReportComponent
+    ReportComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
