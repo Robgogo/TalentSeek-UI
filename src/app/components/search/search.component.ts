@@ -22,6 +22,7 @@ export class SearchComponent implements OnDestroy, OnInit {
     private dataSharingService:DataSharingService) { }
 
   ngOnInit() {
+
     this.dtOptions = {
       pagingType: 'full_numbers'
       // pageLength: 2

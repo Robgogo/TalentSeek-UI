@@ -58,16 +58,19 @@ export class AppointmentComponent implements OnInit {
     return this.appointmentForm.controls;
   }
   sendSMS(){
-    // alert(JSON.stringify(this.appointmentForm.value));
+
+    var appDate=new Date(this.f.appointmentDate.value);
+    // alert(d);
+    this.f.appointmentDate.setValue(appDate);
+    
     this.dataService.postAppointmentInfo(this.appointmentForm.value)
       .subscribe(res=>{
-          // alert(JSON.stringify(res));
+          alert(JSON.stringify(res));
           this.isClicked=true;
       });
       this.dataSharingService.shareAppointmentInfo(this.appointmentForm.value); 
 
       this.goBack();
-      
 
   }
 
@@ -113,11 +116,5 @@ export class AppointmentComponent implements OnInit {
     }
 
   }
-
-  // shareAppointmentInfo(){
-
-  //   this.dataSharingService.sendAppointmentInfo();
-  // }
-
 
 }

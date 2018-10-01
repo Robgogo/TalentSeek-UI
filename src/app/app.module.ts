@@ -17,15 +17,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './components/login/login.component';
-import { GenerateCardNoComponent } from './components/generate-card-no/generate-card-no.component';
 import { SearchComponent } from './components/search/search.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { UpdateComponent } from './components/update/update.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { DateComponent } from './components/date/date.component';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { UpdateAppointmentComponent } from './components/update-appointment/update-appointment.component';
 import { ReportComponent } from './components/report/report.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 
@@ -37,15 +36,14 @@ import { ReportComponent } from './components/report/report.component';
     HomeComponent,
     MainComponent,
     LoginComponent,
-    GenerateCardNoComponent,
     SearchComponent,
     AppointmentComponent,
     UpdateComponent,
     RegistrationComponent,
-    DateComponent,
     AppointmentListComponent,
     UpdateAppointmentComponent,
-    ReportComponent
+    ReportComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

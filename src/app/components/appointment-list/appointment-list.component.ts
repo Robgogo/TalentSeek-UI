@@ -81,7 +81,11 @@ export class AppointmentListComponent implements OnInit,OnDestroy {
         // alert(JSON.stringify(res));
         if(!res.status){
           this.goBack();
-          window.location.reload();
+          this.dataService.getAppointmentList().subscribe(result=>{
+            this.appointmentList=result;
+            
+          });
+          // window.location.reload();
           this.isClicked=true;
         }
         else{
