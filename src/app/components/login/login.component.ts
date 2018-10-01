@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error = '';
   successMessage = '';
-
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
@@ -26,6 +25,7 @@ export class LoginComponent implements OnInit {
       const message = this.route.snapshot.paramMap.get('message');
       this.successMessage = this.route.snapshot.paramMap.get('successMessage');
       this.error = message;
+      this.successMessage = this.route.snapshot.paramMap.get('successMessage');
       this.loginForm = this.formBuilder.group({
           username: ['', Validators.required],
           password: ['', Validators.required]
