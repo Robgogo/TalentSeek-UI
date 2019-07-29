@@ -1,0 +1,36 @@
+
+<div >
+  <img style="width:102%;height:450px;margin-top: -30px;margin-left: -15px;position: relative" src="assets/cover.jpg" >
+
+</div>
+<div class="mybody row" >
+    <!-- <div class="card col-2" style="margin-left:10px;margin-right: 10px;" > -->
+    <div class="card col-2" style="margin-left:10px;margin-right: 10px;" *ngFor="let talent of talentList">
+      <div class="container" style="margin-top:-5px;">
+          <!-- <h6 style="color:white">Henok Ayele</h6> -->
+          <h6 style="color:white">{{talent.user.firstname}} {{talent.user.lastname}}</h6>
+          <div class="follow-ava">
+            <img src="assets/profile-widget-avatar.jpg" alt="">
+          </div>
+          <!-- <h6 style="color:white;margin-bottom: 5px;">Administrator</h6> -->
+          <h6 style="color:white;margin-bottom: 5px;">{{talent.bio.interest}}</h6>
+          <div class="row">
+            <button type="button" class="btn btn-success active mt-3" style="margin-left:15px;margin-right: 25px;width: 120px;height: 45px" (click)="viewProfile(talent)">View Profile</button>
+          </div>               
+      </div>
+    </div>  
+</div>
+
+
+  
+
+<footer class="footer_section big_padding bg_navy" style="width:110;">
+  <div class="container">
+    <div class="footer_detail">
+      <p class="text-center default_text open_sans white_color" style="color:white;font-size: 20px;">Copyright &copy; TalentSeek 2018 </p>
+    </div>
+  </div>
+</footer> 
+  
+
+    

@@ -7,8 +7,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { ErrorInterceptor } from "./Auth/error.interceptor";
 import { JwtInterceptor } from "./Auth/jwt.interceptor";
 import { DatePipe } from '@angular/common';
-import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
 
 
 import { AppComponent } from './app.component';
@@ -17,14 +18,21 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './components/login/login.component';
-import { SearchComponent } from './components/search/search.component';
-import { AppointmentComponent } from './components/appointment/appointment.component';
-import { UpdateComponent } from './components/update/update.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
-import { UpdateAppointmentComponent } from './components/update-appointment/update-appointment.component';
-import { ReportComponent } from './components/report/report.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import { BioComponent } from './components/bio/bio.component';
+import { EdExComponent } from './components/ed-ex/ed-ex.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
+import { EdexListComponent } from './components/edex-list/edex-list.component';
+import { UpdateportfolioComponent } from './components/updateportfolio/updateportfolio.component';
+import { UpdateEdExComponent } from './components/update-ed-ex/update-ed-ex.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 
 
@@ -35,24 +43,33 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     PageNotFoundComponent,
     HomeComponent,
     MainComponent,
-    LoginComponent,
-    SearchComponent,
-    AppointmentComponent,
-    UpdateComponent,
     RegistrationComponent,
-    AppointmentListComponent,
-    UpdateAppointmentComponent,
-    ReportComponent,
-    ResetPasswordComponent
+    LoginComponent,
+    ResetPasswordComponent,
+    PortfolioComponent,
+    BioComponent,
+    EdExComponent,
+    DashboardComponent,
+    PortfolioListComponent,
+    EdexListComponent,
+    UpdateportfolioComponent,
+    UpdateEdExComponent,
+    LandingPageComponent,
+    ProfileComponent,
+    SearchResultsComponent,
+    MyProfileComponent,
+    ViewProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-     FormsModule,
+    FormsModule,
     ReactiveFormsModule,
     DataTablesModule,
     HttpClientModule,
-    DlDateTimePickerDateModule,NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ToastrModule.forRoot(),// ToastrModule added,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

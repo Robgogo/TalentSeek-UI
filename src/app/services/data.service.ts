@@ -14,78 +14,82 @@ const httpOptions = {
 export class DataService {
 
   constructor(private baseUrl: BaseUrlService,private http: HttpClient) { }
-
-  baseurlRegisterCustomer= this.baseUrl.baseUrl + "registerStaff/customers";
-  baseurlRegisterAppointment= this.baseUrl.baseUrl + "registerStaff/appointment";
-  baseurlGetCardNumber= this.baseUrl.baseUrl+ "cardNUmberGenerate/CareNumberGenerater";
-  baseurlGetCustomersList= this.baseUrl.baseUrl + "getStaff/customerslist";
-  baseurlisAutoGenerate= this.baseUrl.baseUrl + "getStaff/getAutoStatus";
-  baseurlGetStatus= this.baseUrl.baseUrl+ "getStaff/statuslist";
-  baseurlGetReportData= this.baseUrl.baseUrl+"appointmentReport/dailyAppointmentList";
-  baseurlGetDepartment= this.baseUrl.baseUrl+ "getStaff/MedicalDepartments";
-  baseurlGetAppointments= this.baseUrl.baseUrl+ "getStaff/Appointmentlist";
-  baseurlUpdateAppointmentDate= this.baseUrl.baseUrl+"postStaff/updateAppointmentDate";
-  baseurlCancelAppointmentDate= this.baseUrl.baseUrl+"postStaff/deleteAppointment";
-  baseurlGetSingleCustomerInfo= this.baseUrl.baseUrl+ "";
-  baseurlUpdateCustomer= this.baseUrl.baseUrl + "postStaff/updateCustomers";
-  baseurlCheckCredentials= this.baseUrl.baseUrl+ "";
-  baseurlGetCurrentUser= this.baseUrl.baseUrl+ "users/me";
-  
-
+  id:any;
+  baseurlRegisterUser= this.baseUrl.baseUrl + "users/signup";
+  baseurlisPasswordChanged= this.baseUrl.baseUrl+ "getStaff/isPasswordChanged";
+  baseurllogger = this.baseUrl.baseUrl + "users/login";
+  baseurlGetDifferentietor = this.baseUrl.baseUrl + "users/";
+  baseurlEdExUser = this.baseUrl.baseUrl + "resource/edex";
+  baseurlBio = this.baseUrl.baseUrl + "resource/bio";
+  baseurlPortfolio = this.baseUrl.baseUrl + "resource/portfolio";
+  baseurlGetCurrentBio = this.baseUrl.baseUrl + "resource/bio";
+  baseurlGetCurrentEdEx = this.baseUrl.baseUrl + "resource/edex";
+  baseurlGetCurrentPortfolio =this.baseUrl.baseUrl + "resource/portofolio";
+  baseurlGetPortfolioList = this.baseUrl.baseUrl + "resource/portfolio";
+  baseurlUpdatePortfolioList = this.baseUrl.baseUrl + "resource/portfolio/edit";
+  baseurlGetTalentList = this.baseUrl.baseUrl + "users/latest";
+  baseurlGetTalentProfile = this.baseUrl.baseUrl + "resource/talent";
+  baseurlGetSearchResult =  this.baseUrl.baseUrl + "/users/search";
+  baseurlDeletePortfolioList = this.baseUrl.baseUrl + "resource/deletePortfolio";
   // Get HTTP
-  getCurrentUser(){
-    return this.http.get(this.baseurlGetCurrentUser);
-  }
-  getAppointmentList(){
-    return this.http.get(this.baseurlGetAppointments);
+  isPasswordChanged(){
+    return this.http.get(this.baseurlisPasswordChanged);
   }
 
-  getStatusList(){
-    return this.http.get(this.baseurlGetStatus);
-  }
-  isAutoGenerate(){
-    return this.http.get(this.baseurlisAutoGenerate);
-  }
-  
-  getCardNumber():Observable<any>{
-    return this.http.get<any>(this.baseurlGetCardNumber);
+  getPortfolioList(id:any){ 
+    return this.http.get(this.baseurlGetPortfolioList+"/"+id);
   }
 
-  
-  getDepartmentList():Observable<any>{
-    return this.http.get<any>(this.baseurlGetDepartment);
+  getTalentList(){ 
+    return this.http.get(this.baseurlGetTalentList);
   }
 
-  getCustomersList(){ 
-    return this.http.get(this.baseurlGetCustomersList);
+  getProfile(id:any){
+    return this.http.get(this.baseurlGetTalentProfile +"/"+id);
+  }
+
+  getCurrentBio(id:any){
+    return this.http.get(this.baseurlGetCurrentBio +"/"+id);
+  }
+
+  getCurrentPortfolio(id:any){
+    return this.http.get(this.baseurlGetCurrentPortfolio +"/"+id);
+  }
+
+  getCurrentEdEx(id:any){
+    return this.http.get(this.baseurlGetCurrentEdEx +"/"+id);
+  }
+
+  logger(info:any){
+    return this.http.post<any>(this.baseurllogger,JSON.stringify(info),httpOptions);
   }
 
   // Post HTTP
-  updateAppointmentInfo(info:any){
-    return this.http.post<any>(this.baseurlUpdateAppointmentDate,JSON.stringify(info),httpOptions);
-  }
-
-  checkCredintial(info:any){
-    return this.http.post<any>(this.baseurlUpdateAppointmentDate,JSON.stringify(info),httpOptions);
-  }
-
-  cancelAppointment(info:any){
-    return this.http.post<any>(this.baseurlCancelAppointmentDate,JSON.stringify(info),httpOptions);
-  }
-
-  updateCustomerInfo(info:any){
-    return this.http.post<any>(this.baseurlUpdateCustomer,JSON.stringify(info),httpOptions);
-  }
-
-  postAppointmentInfo(info:any){
-    return this.http.post<any>(this.baseurlRegisterAppointment,JSON.stringify(info),httpOptions);
-  }
   postRegisterInfo(info:any){
-    return this.http.post<any>(this.baseurlRegisterCustomer,JSON.stringify(info),httpOptions);
+    return this.http.post<any>(this.baseurlRegisterUser,JSON.stringify(info),httpOptions);
+  }
+  postEdExInfo(info:any){
+    return this.http.post<any>(this.baseurlEdExUser,JSON.stringify(info),httpOptions);
   }
 
-  getReportData(info:any){
-    return this.http.post<any>(this.baseurlGetReportData,JSON.stringify(info),httpOptions);
+  postPortfolioInfo(info:any){
+    return this.http.post<any>(this.baseurlPortfolio,JSON.stringify(info),httpOptions);
+  }
+
+  postBioInfo(info:any){
+    return this.http.post<any>(this.baseurlBio,JSON.stringify(info),httpOptions);
+  }
+
+  updatePortfolio(info:any){
+    return this.http.post<any>(this.baseurlUpdatePortfolioList,JSON.stringify(info),httpOptions);
+  }
+
+  deletePortfolio(info:any){
+    return this.http.post<any>(this.baseurlDeletePortfolioList,JSON.stringify(info),httpOptions);
+  }
+
+  getQuery(info:any){
+    return this.http.post<any>(this.baseurlGetSearchResult,JSON.stringify(info),httpOptions);
   }
 
 }

@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="title">
+      <h2> <img src="assets/register.png" style="width:45px;height:45px;margin-right: 20px;margin-left: -80px;">Portfolio </h2>
+    </div>
+    <hr style="height:1px;color:#333;background-color:#333;"/>
+    <div class="container" style="margin-top:30px;">
+      <form class="form-signin" [formGroup]="portfolioForm" novalidate>
+        <div class=" form-group row">
+          <label class="required col-3 col-form-label">Project title</label>
+          <div class="col-9">
+              <input type="text" class="form-control" [class.is-invalid]="portfolioForm.get('projectTitle').invalid && portfolioForm.get('projectTitle').dirty" 
+                formControlName="projectTitle" name="projectTitle" placeholder="School" required >
+              <small class="form-text" [hidden]="portfolioForm.get('projectTitle').valid || portfolioForm.get('projectTitle').pristine">
+                Project title is required
+              </small>  
+          </div> 
+        </div>
+        <div class=" form-group row">
+            <label class="required col-3 col-form-label">Description</label>
+            <div class="col-9">
+                <textarea class="form-control" [class.is-invalid]="portfolioForm.get('description').invalid && portfolioForm.get('description').dirty" 
+                  formControlName="description" name="description" placeholder="Description" required ></textarea>
+                <small class="form-text" [hidden]="portfolioForm.get('description').valid || portfolioForm.get('description').pristine">
+                  Description is required
+                </small>  
+            </div> 
+          </div>
+          <div class=" form-group row">
+            <label class="col-3 col-form-label">Link</label>
+            <div class="col-9">
+              <input type="text" class="form-control" [class.is-invalid]="portfolioForm.get('link').invalid && portfolioForm.get('link').dirty" 
+                formControlName="link" name="link" placeholder="Link" />
+            </div> 
+          </div>
+        <div class="row" style="margin-top:20px;">
+          <button type="submit" class="btn btn-primary active mt-3" style="margin-left:180px;width: 120px;height: 45px" [disabled]="portfolioForm.invalid" (click)="onSubmit()">Save</button>
+          <button type="submit" class="btn btn-danger active mt-3" style="margin-left:80px;width: 120px;height: 45px" (click)="goBack()">Cancel</button>
+        </div>  
+      </form>          
+    </div>
+  </div>  
+  
+  

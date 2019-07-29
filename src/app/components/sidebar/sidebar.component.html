@@ -1,79 +1,126 @@
 
-  <nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="height:50px;">
         <span [hidden]="!loggedIn" id="opener" (click)="toggleNav()">
-            <button type="button" id="optionsButton" style="color:white;background-color: grey;" class="btn btn-sm">&#9776;</button>
+            <button type="button" id="optionsButton" style="color:white;background-color:grey;font-size: 20px;width: 38px;height: 38px;margin-bottom: 6px;" class="btn btn-sm">&#9776;</button>
             &nbsp;&nbsp;
+            
         </span>
-        <a class="navbar-brand" routerLink="/">Unimedical</a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" routerLink="get/customerlist">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-    
-          <div [hidden]="!loggedIn" class="btn-group mr-3" style="padding-right: 10px">
-            <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-                <button class="btn btn-outline-success cornerButton" ngbDropdownToggle>
-                    {{ CurrentUser }}
-                </button>
-                <div class="dropdown-menu" ngbDropdownMenu>
-                <button routerLink="register/customer" class="dropdown-item">Register</button>
-                <button (click)="logout()" class="dropdown-item">Logout</button>
+        <div [hidden]="!logger" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="get/customerlist"> <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <div [hidden]="!logger">
+                <p class="btn btn-outline " style="font-size:17px;color: white;font-family:'Times New Roman', Times, serif;color:black;margin-bottom: 0px;margin-right: 900px;">
+                    <span style=" font-size:24px;color: white">TalentSeek | </span> 
+                        <span style="color:white">All in here !!!</span> 
+                </p>
+            </div>
+                
+            <div class="btn-group mr-3" [hidden]="!logger" style="padding-right: 10px;margin-left: 200px;">
+                <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                    <button class="btn btn-outline cornerButton" ngbDropdownToggle style="color:white">
+                        {{ user }}
+                    </button>
+                    <div class="dropdown-menu" ngbDropdownMenu>
+                        <button (click)="logout()" class="dropdown-item">Logout</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div [hidden]="loggedIn">
-            <button class="btn btn-outline-success cornerButton" routerLink="/login" class="btn btn-outline-success cornerButton">
-                Login
-            </button>
+
+        <div [hidden]="logger" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="get/customerlist"> <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <div [hidden]="logger">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="btn btn-outline " style="font-size:17px;color: white;font-family:'Times New Roman', Times, serif;color:black;margin-bottom: 0px;margin-left: -1400px;">
+                            <span style=" font-size:24px;color: white">TalentSeek | </span> 
+                            <span style="color:white">All in here !!!</span>
+                        </p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-lg " id="myBtn" style="margin-left: -500px;margin-top: 5px;height:70%;background-color: rgb(41, 43, 85)" (click)="login();"><span style="margin-bottom:7px;color: white">Login</span></button>
+                            </div>
+                            <div class="col-md-4">
+                                    <form [formGroup]="searchForm" novalidate>
+                                        <div class="form-gorup row">
+                                            <div class="col-2">
+                                                <input class="form-control" [class.is-invalid]="searchForm.get('query').invalid && searchForm.get('query').dirty" 
+                                                    formControlName="query" name="query" style="width:250px;margin-left: -400px;margin-top: 7px;" type="text" placeholder="Search" required/>
+                                            </div>
+                                            <button type="submit" (click)="search()" style="margin-left:-150px"><span style="color:white">Search</span></button>
+                                        </div>
+                                    </form>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+
         </div>
-    
-        </div>
-      </nav>
+</nav>
 
     <div id="mySidenav" class="sidenav">
 
     <div class="dashboard-options">
         <!--a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a-->
         <ul class="list-group list-group-flush">
-     
-            <li class="list-group-item">
+            <li class="list-group-item" style="border-bottom: 1px solid rgb(53, 81, 133);height: 55px;">
                 <div class="row">
                     <img src="assets/register.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
-                    <a routerLink="register/customer">Register</a>
+                    <a routerLink="dashboard">Dashboard</a>
                 </div>
             </li>
-            <li class="list-group-item" style="border-bottom: 1px solid lightgray">
-                <div class="row">
-                    <img src="assets/list.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
-                    <a routerLink="get/customerlist">Customer List</a>
-                </div>
-                
-            </li>
-            <li class="list-group-item" style="border-bottom: 1px solid lightgray">
+            <li class="list-group-item" style="border-bottom: 1px solid rgb(53, 81, 133);height: 55px;">
+                    <div class="row">
+                        <img src="assets/register.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
+                        <a routerLink="myProfile">Profile</a>
+                    </div>
+                </li>
+                <li class="list-group-item" style="border-bottom: 1px solid rgb(53, 81, 133);height: 55px;">
+                        <div class="row">
+                            <img src="assets/appointment.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
+                            <a routerLink="portfolio">Add Portfolio</a>
+                        </div>
+                    </li>    
+            <li class="list-group-item" style="border-bottom: 1px solid rgb(53, 81, 133);height: 55px;">
                 <div class="row">
                     <img src="assets/appointment.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
-                    <a routerLink="AppointmentList">Appointment List</a>
+                    <a routerLink="portfolioList">Portfolio List</a>
                 </div>
             </li>
-            <li class="list-group-item" style="border-bottom: 1px solid lightgray">
+            <li class="list-group-item" style="border-bottom: 1px solid rgb(53, 81, 133);height: 55px;">
                 <div class="row">
                     <img src="assets/appointment.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
-                    <a routerLink="dailyAppointmentReport">Report</a>
+                    <a routerLink="educationandexperience">Education</a>
                 </div>
             </li>
-            <li class="list-group-item" style="border-bottom: 1px solid lightgray">
-                <div class="row">
-                    <img src="assets/resetPassword.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
-                    <a routerLink="resetPassword">Reset Password</a>
-                </div>
+            <li class="list-group-item" style="border-bottom: 1px solid rgb(53, 81, 133);height: 55px;">
+                    <div class="row">
+                        <button (click)="logout()">Logout</button>
+                    </div>
             </li>
-            
+            <!-- <li class="list-group-item" style="border-bottom: 1px solid rgb(53, 81, 133);height: 55px;">
+                    <div class="row">
+                        <img src="assets/appointment.png" style="width:35px;height:35px;margin-right: -35px;margin-left: 5px;">
+                        <a routerLink="portfoliolist">Portfolio List</a>
+                    </div>
+                </li> -->
+
             <!-- <li class="list-group-item" style="border-bottom: 1px solid lightgray">
                 <a routerLink="/appointment">Appointment</a>
             </li>

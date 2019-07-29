@@ -1,0 +1,21 @@
+
+<div class="container">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id="table">
+      <thead>
+        <tr>
+        <th>Project Title</th>
+        <th>Description</th>
+        <th>Action</th>
+        <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let portfolio of portfolioList.portfolio">
+          <td>{{portfolio.projectTitle}}</td>
+          <td>{{portfolio.projectDescription}}</td>
+          <td><button type="Submit" (click)="editPortfolio(portfolio)" class="btn btn-primary">Edit</button></td>
+          <td><button type="Submit" onClick="deletePortfolio(portfolio)" class="btn btn-danger">Delete</button></td>
+        </tr>
+      </tbody>
+      </table>
+</div>

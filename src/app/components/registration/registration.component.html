@@ -1,10 +1,14 @@
 
 <div class="container">
+  
   <div class="card card-container">
-    
-      <form class="form-signin" [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
-          <span id="reauth-email" class="reauth-email"></span>
-          <div class=" form-group row">
+      <div class="title">
+          <h2> <img src="assets/register.png" style="width:45px;height:45px;margin-right: 20px;margin-left: -10px;">Register </h2>
+        </div>
+        <hr style="height:1px;color:#333;background-color:#333;"/>
+      <form class="form-signin" [formGroup]="registrationForm" novalidate>
+        <span id="reauth-email" class="reauth-email"></span>
+        <div class=" form-group row">
             <label class="required col-3 col-form-label">First Name</label>
             <div class="col-9">
                 <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('firstName').invalid && registrationForm.get('firstName').dirty" 
@@ -13,18 +17,8 @@
                   First Name is required
                 </small>  
             </div> 
-          </div>
-          <div class=" form-group row">
-            <label class=" col-3 col-form-label">Middle Name</label>
-            <div class="col-9">
-                <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('middleName').invalid && registrationForm.get('middleName').dirty" 
-                  formControlName="middleName" name="middleName" id="middleName" placeholder="Middle Name" required />
-                <small class="form-text" [hidden]="registrationForm.get('middleName').valid || registrationForm.get('middleName').pristine">
-                  Middle Name is required
-                </small>  
-            </div> 
-          </div>
-          <div class=" form-group row">
+        </div>
+        <div class=" form-group row">
             <label class="required col-3 col-form-label">Last Name</label>
             <div class="col-9">
                 <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('lastName').invalid && registrationForm.get('lastName').dirty" 
@@ -33,89 +27,73 @@
                   Last Name is required
                 </small>  
             </div> 
-          </div>
-          <div class=" form-group row">
-            <label class="col-3 col-form-label">Age</label>
+        </div>
+        <div class=" form-group row">
+            <label class="required col-3 col-form-label">Date of Birth</label>
             <div class="col-9">
-                <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('custAge').invalid && registrationForm.get('custAge').dirty"
-                 formControlName="custAge" name="custAge" placeholder="Age" />
-                <small class="form-text" [hidden]="registrationForm.get('custAge').valid || registrationForm.get('custAge').pristine">
-                  Age is required
+                <input type="date" class="form-control" [class.is-invalid]="registrationForm.get('DOB').invalid && registrationForm.get('DOB').dirty"
+                 formControlName="DOB" name="DOB" placeholder="Date of Birth" required/>
+                <small class="form-text" [hidden]="registrationForm.get('DOB').valid || registrationForm.get('DOB').pristine">
+                  Date of Birth is required
                 </small>  
             </div> 
-          </div>
-          <div class=" form-group row">
-            <label class="required col-3 col-form-label">Phone Number</label>
+        </div>
+        <div class=" form-group row">
+            <label class="required col-3 col-form-label">Email</label>
             <div class="col-9">
-                <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('phoneNumber').invalid && registrationForm.get('phoneNumber').dirty" 
-                  formControlName="phoneNumber" name="phoneNumber" placeholder="Phone Number" required />
-                <small class="form-text" [hidden]="registrationForm.get('phoneNumber').valid || registrationForm.get('phoneNumber').pristine">
-                  <span *ngIf="registrationForm.hasError('pattern',['phoneNumber'])">Phone Number is not valid</span>
-                  <span *ngIf="registrationForm.hasError('required',['phoneNumber'])">Phone Number is required</span> 
+                <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('email').invalid && registrationForm.get('email').dirty" 
+                  formControlName="email" name="email" placeholder="Email" required email />
+                <small class="form-text" [hidden]="registrationForm.get('email').valid || registrationForm.get('email').pristine">
+                  <span *ngIf="registrationForm.hasError('email',['email'])">Email is not valid</span>
+                  <span *ngIf="registrationForm.hasError('required',['email'])">Email is required</span> 
                 </small>   
             </div> 
-          </div>
-          <div class=" form-group row">
-            <label class="required col-3 col-form-label">Confirm Phone</label>
+        </div>
+        <div class=" form-group row">
+            <label class="required col-3 col-form-label">Password</label>
             <div class="col-9">
-                <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('confirmPhoneNumber').invalid && registrationForm.get('confirmPhoneNumber').dirty" 
-                  formControlName="confirmPhoneNumber" name="confirmPhoneNumber" placeholder="Confirm Phone Number" required />
-                <small class="form-text" [hidden]="registrationForm.get('confirmPhoneNumber').valid || registrationForm.get('confirmPhoneNumber').pristine"> 
-                  <span *ngIf="registrationForm.controls.confirmPhoneNumber.errors?.MatchPhoneNumber">Phone Number missmatch</span> 
-                  <span *ngIf="registrationForm.hasError('required',['confirmPhoneNumber'])">Phone Number Confirmation is required</span>
+                <input type="password" class="form-control" [class.is-invalid]="registrationForm.get('password').invalid && registrationForm.get('password').dirty" 
+                  formControlName="password" name="password" placeholder="Password" required minlength="6" />
+                <small class="form-text" [hidden]="registrationForm.get('password').valid || registrationForm.get('password').pristine">
+                  <span *ngIf="registrationForm.hasError('minlength',['password'])">Password must be atleast 6 characters</span>
+                  <span *ngIf="registrationForm.hasError('required',['password'])">Password is required</span> 
                 </small>   
             </div> 
-          </div>
-          <!-- <div class=" form-group row">
-            <label class="col-3 col-form-label">Information</label>
+        </div>
+        <div class=" form-group row">
+            <label class="required col-3 col-form-label">Confirm Password</label>
             <div class="col-9">
-                <textarea type="name" class="form-control" [class.is-invalid]="registrationForm.get('Information').invalid && registrationForm.get('Information').dirty" 
-                  formControlName="Information" name="Information" placeholder="Information" required ></textarea>
-                <small class="form-text" [hidden]="registrationForm.get('Information').valid || registrationForm.get('Information').pristine">
-                  Information is required
-                </small>  
+                <input type="password" class="form-control" [class.is-invalid]="registrationForm.get('confirmPassword').invalid && registrationForm.get('confirmPassword').dirty" 
+                  formControlName="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required minlength="6" required/>
+                <small class="form-text" [hidden]="registrationForm.get('confirmPassword').valid || registrationForm.get('confirmPassword').pristine">
+                  <span *ngIf="registrationForm.controls.confirmPassword.errors?.MatchPassword">Password missmatch</span>
+                  <span *ngIf="registrationForm.hasError('required',['confirmPassword'])">Password confirmation is required</span> 
+                </small>   
             </div> 
-          </div> -->
-          <div class=" form-group row">
-            <label class="required col-3 col-form-label">Card Number</label>
-                <div class="col-6">
-                  <input type="name" class="form-control" [class.is-invalid]="registrationForm.get('customerCardNo').invalid && registrationForm.get('customerCardNo').dirty" 
-                      formControlName="customerCardNo" name="customerCardNo" placeholder="Card Number" required />
-                  <small class="form-text" [hidden]="registrationForm.get('customerCardNo').valid || registrationForm.get('customerCardNo').pristine">
-                      Card Number is required
-                  </small>
-                </div>  
-                <div class="col-3">
-                    <button style="margin-left: 0px;margin-top: 0px;height: 38px;" [disabled]="!getCardNumberStatus()" (click)="generate()" class="form-control btn btn-primary" type="submit">Generate</button>
-                </div>
-          </div>
-          
+        </div>
+        <div class=" form-group row">
+            <label class="required col-3 col-form-label">Looking to hire or to be hired ?</label>
+            <div class="col-9">
+              <select [class.is-invalid]="registrationForm.get('isTalent').invalid && registrationForm.get('isTalent').dirty"
+                  formControlName="isTalent" id="isTalent" class="custom-select" required>
+                <option [hidden]="registrationForm.get('isTalent').dirty" value="" selected>Please Select</option>
+                <option value="recruiter">Recruiter</option>
+                <option value="talent">Talent</option>
+              </select>
+              <small class="form-text" [hidden]="registrationForm.get('isTalent').valid || registrationForm.get('isTalent').pristine">
+                Position is required
+              </small>  
+            </div> 
+        </div>
         <div class="form-group row">
-            <div class="col-9">
-              <button class="btn btn-lg btn-primary" id="myBtn" [disabled]="registrationForm.invalid" style="margin-left: 145px;margin-top: 10px;" type="submit" (click)="onSubmit();">Register</button>
-              <!-- The Modal -->
-        <div id="myModal" class="modal" >
-
-            <!-- Modal content -->
-            <div class="modal-content">
-              <div class="alert alert-success" style="text-align: center;">
-                {{alert}}
-              </div><br>
-              <p style="text-align: center"><b>Do you need an appointment ?</b></p>
-              <div class="row">
-
-                <div class="col-3">
-                  <button class="btn btn-primary" (click)="appoint()" style="width: 70px;height: 40px;margin-left: 150px;margin-right: 0px;">Yes</button>
-                </div>  
-                <div class="col-3">
-                  <button class="btn btn-danger" (click)="goBack()" style="width: 70px;height: 40px;margin-left: 150px;">No</button>
-                </div>
-                  
-              </div>
-
-            </div>
-          
+          <div class="col-9">
+            <button class="btn btn-lg btn-primary" id="myBtn" [disabled]="registrationForm.invalid" style="margin-left: 145px;margin-top: 10px;" (click)="onSubmit();">Register</button>
+            <!-- The Modal -->
           </div>
+        </div>
+        <div class=" form-gorup row">
+            <div class="col-12">
+                <p class=" "  style="text-align: center; box-shadow: none;margin-top:25px; "><button (click)="index()">&larr; Back to Home</button></p>
             </div>
         </div>
         

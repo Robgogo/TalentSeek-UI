@@ -1,30 +1,76 @@
-﻿<div class="container">
-  <div class="card card-container">
-    <div class="alert alert-danger" *ngIf="error">
-        {{ error }}
-    </div>
-    <div class="text-success alert alert-success" *ngIf="!error && successMessage">{{successMessage}}</div>  
-    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate> 
-        <span id="reauth-email" class="reauth-email"></span>
-        <input type="email" id="inputEmail" class="form-control" [class.is-invalid]="loginForm.get('username').invalid && loginForm.get('username').dirty" 
-            formControlName="username" name="username" placeholder="User Name" required />
-        <small class="form-text" [hidden]="loginForm.get('username').valid || loginForm.get('username').pristine">
-            User Name is required
-        </small>
-    <input type="password" id="inputPassword" class="form-control" [class.is-invalid]="loginForm.get('password').invalid && loginForm.get('password').dirty" 
-        formControlName="password" name="password" placeholder="Password" required />
-        <small class="form-text" [hidden]="loginForm.get('password').valid || loginForm.get('password').pristine">
-            Password is required
-        </small>
-          <div id="remember" class="checkbox">
-              <label>
-                  <input type="checkbox" value="remember-me"> Remember me
-              </label>
+﻿<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form [formGroup]="loginForm" novalidate>
+                    <h1>Login</h1>
+                    <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
+                    <p class="text-muted" style="font-size:15px;">Sign In to your account</p>
+                        <div class="alert alert-danger" *ngIf="error">
+                            {{ error }}
+                        </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><img src="assets/user.png" style="width:25px;height:25px;background-color:white;margin-right:5px;"></span>
+                        </div>
+                        <input type="email" class="form-control" [class.is-invalid]="loginForm.get('email').invalid && loginForm.get('email').dirty" 
+                            formControlName="email" name="email" placeholder="Email" required>
+                        
+                    </div>
+                    <div class="input-group mb-3">
+                        <small class="form-text" [hidden]="loginForm.get('email').valid || loginForm.get('email').pristine">
+                            Email is required
+                        </small>
+                    </div>
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><img src="assets/download.png" style="width:25px;height:25px;background-color:white;margin-right:5px;"></span>
+                        </div>
+                        <input type="password" class="form-control" [class.is-invalid]="loginForm.get('password').invalid && loginForm.get('password').dirty" 
+                            formControlName="password" name="password" placeholder="Password" required>    
+                    </div>
+                    <div class="input-group mb-3">
+                        <small class="form-text" [hidden]="loginForm.get('password').valid || loginForm.get('password').pristine">
+                            Password is required
+                        </small>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-primary px-4" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class=" "  style="text-align: center; box-shadow: none;margin-top:25px; "><button (click)="index()">&larr; Back to Home</button></p>
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+            <div class="card text-white py-5 d-md-down-none" style="width:44%;background-color:rgb(41, 43, 85);" >
+              <div class="card-body text-center">
+                <div>
+                  <h2 style="margin-top:-13px;">Sign up</h2>
+                  <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
+                  <p style="font-size:18px;color: white;"><i>Confort zone is a very good place to stay, but nothing grows there! </i></p>
+                  <p style="font-size:16px;color: white;"><i>Come and grow with us! </i></p>
+                  <button type="button" class="btn btn-primary active mt-3" (click)="register()">Register Now!</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-lg btn-primary" [disabled]="loginForm.invalid" type="submit">Sign in</button>
-      </form><!-- /form -->
-      <a href="#" class="forgot-password">
-          Forgot the password?
-      </a>
-  </div><!-- /card-container -->
-</div><!-- /container -->
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+

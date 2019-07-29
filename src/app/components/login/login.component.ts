@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../Auth/authentication.service';
+import { DataSharingService } from "../../services/data-sharing.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,12 +15,13 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = '';
+  temp:boolean;
   successMessage = '';
-  constructor(
-      private formBuilder: FormBuilder,
-      private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
       private router: Router,
-      private authenticationService: AuthenticationService) {}
+      private authenticationService: AuthenticationService,
+      private dataSharing: DataSharingService,
+      private formBuilder: FormBuilder) {}
 
   ngOnInit() {
       const message = this.route.snapshot.paramMap.get('message');
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.error = message;
       this.successMessage = this.route.snapshot.paramMap.get('successMessage');
       this.loginForm = this.formBuilder.group({
-          username: ['', Validators.required],
+          email: ['', Validators.required],
           password: ['', Validators.required]
       });
 
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
           return;
       }
 
-      this.authenticationService.login(this.f.username.value, this.f.password.value)
+      this.authenticationService.login(this.f.email.value, this.f.password.value)
           .pipe(first())
           .subscribe(
               data => {
@@ -58,7 +60,7 @@ export class LoginComponent implements OnInit {
                     
                   }
                   else{
-                      this.router.navigate(['/get/customerlist']);
+                      this.router.navigate(['/dashboard']);
                       
                   }
               },
@@ -66,5 +68,13 @@ export class LoginComponent implements OnInit {
                   this.error = error;
               });
   }
+
+  register(){
+      this.router.navigateByUrl('signup');
+  }
+  
+index(){
+    this.router.navigateByUrl('index');
+}
   
 }

@@ -1,0 +1,143 @@
+<div class="card">
+  <div class="title">
+    <h2> <img src="assets/register.png" style="width:45px;height:45px;margin-right: 20px;margin-left: -80px;">Background Information </h2>
+  </div>
+  <!-- <hr style="height:1px;color:#333;background-color:#333;"/> -->
+  <div class="container" style="margin-top:30px;">
+    <form class="form-signin" [formGroup]="edexForm" novalidate>
+      <div class="title">
+        <h3 style="margin-left:-450px;"> Education </h3>
+      </div>
+        <hr style="height:0.5px;color:#333;background-color:#333;"/>
+      <div class=" form-group row">
+        <label class="required col-3 col-form-label">School</label>
+        <div class="col-9">
+            <input type="name" class="form-control" [class.is-invalid]="edexForm.get('school').invalid && edexForm.get('school').dirty" 
+              formControlName="school" name="school" placeholder="School" required />
+            <small class="form-text" [hidden]="edexForm.get('school').valid || edexForm.get('school').pristine">
+              School is required
+            </small>  
+        </div> 
+      </div>
+      <div class=" form-group row">
+        <label class="required col-3 col-form-label">Qualification</label>
+        <div class="col-9">
+          <select [class.is-invalid]="edexForm.get('qualification').invalid && edexForm.get('qualification').dirty"
+              formControlName="qualification" id="qualification" class="custom-select" required>
+            <option [hidden]="edexForm.get('qualification').dirty" value="" selected>Select Qualification</option>
+            <option  value="backEnd">Highschool Diploma</option>
+            <option  value="frontEnd">BSc</option>
+            <option  value="fullStack">MSc</option>
+            <option  value="dataEntry">PhD</option>
+            <option  value="securityExpert">MA</option>
+          </select>
+          <small class="form-text" [hidden]="edexForm.get('qualification').valid || edexForm.get('qualification').pristine">
+            Qualification is required
+          </small>  
+        </div> 
+      </div>
+      <div class=" form-group row">
+        <label class="required col-3 col-form-label">Duration</label>
+        <div class="col-4">
+            <input type="month" class="form-control" [class.is-invalid]="edexForm.get('startYear').invalid && edexForm.get('startYear').dirty" 
+              formControlName="startYear" name="startYear" placeholder="Start Year" required />
+            <small class="form-text" [hidden]="edexForm.get('startYear').valid || edexForm.get('startYear').pristine">
+              Start year is required
+            </small> 
+        </div>
+        <div class="col-5">
+          <input type="month" class="form-control" [class.is-invalid]="edexForm.get('endYear').invalid && edexForm.get('endYear').dirty" 
+            formControlName="endYear" name="endYear" placeholder="End date" required />
+          <small class="form-text" [hidden]="edexForm.get('endYear').valid || edexForm.get('endYear').pristine">
+            End year is required
+          </small>  
+      </div>  
+      </div>
+      <div class=" form-group row">
+        <label class="col-3 col-form-label">CGPA</label>
+        <div class="col-9">
+          <input type="text" class="form-control" [class.is-invalid]="edexForm.get('cgpa').invalid && edexForm.get('cgpa').dirty" 
+            formControlName="cgpa" name="cgpa" placeholder="CGPA" />
+        </div> 
+      </div>
+      <div class="title" style="margin-top:70px;">
+          <h3 style="margin-left:-450px;"> Experience </h3>
+        </div>
+          <hr style="height:0.5px;color:#333;background-color:#333;"/>
+        <div class=" form-group row">
+          <label class="required col-3 col-form-label">Company Name</label>
+          <div class="col-9">
+              <input type="name" class="form-control" [class.is-invalid]="edexForm.get('companyName').invalid && edexForm.get('companyName').dirty" 
+                formControlName="companyName" name="companyName" placeholder="Company Name" required />
+              <small class="form-text" [hidden]="edexForm.get('companyName').valid || edexForm.get('companyName').pristine">
+                Company name is required
+              </small>  
+          </div> 
+        </div>
+        
+        <div class=" form-group row">
+          <label class="required col-3 col-form-label">Duration</label>
+          <div class="col-4">
+              <input type="date" class="form-control" [class.is-invalid]="edexForm.get('startDate').invalid && edexForm.get('startDate').dirty" 
+                formControlName="startDate" name="startDate" placeholder="Start date" required />
+              <small class="form-text" [hidden]="edexForm.get('startDate').valid || edexForm.get('startDate').pristine">
+                Start date is required
+              </small> 
+          </div>
+          <div class="col-5">
+            <input type="date" class="form-control" [class.is-invalid]="edexForm.get('endDate').invalid && edexForm.get('endDate').dirty" 
+              formControlName="endDate" name="endDate" placeholder="End date" required />
+            <small class="form-text" [hidden]="edexForm.get('endDate').valid || edexForm.get('endDate').pristine">
+              End date is required
+            </small>  
+        </div>  
+        </div>
+        <div class=" form-group row">
+          <label class="required col-3 col-form-label">Are you available?</label>
+          <div class="col-9">
+            <select [class.is-invalid]="edexForm.get('availability').invalid && edexForm.get('availability').dirty"
+                formControlName="availability" id="availability" class="custom-select" required>
+              <option [hidden]="edexForm.get('availability').dirty" value="" selected>Choose</option>
+              <option  value="yes" >Yes</option>
+              <option  value="no">No</option>
+            </select>
+            <small class="form-text" [hidden]="edexForm.get('availability').valid || edexForm.get('availability').pristine">
+              Availability is required
+            </small>  
+          </div> 
+        </div>
+      <div class="row" style="margin-top:20px;">
+        <button type="submit" class="btn btn-primary active mt-3" style="margin-left:180px;width: 120px;height: 45px" [disabled]="edexForm.invalid" (click)="onSubmit()">Save</button>
+        <button type="button" class="btn btn-danger active mt-3" style="margin-left:40px;width: 120px;height: 45px" (click)="goBack()">Cancel</button>
+      </div>  
+    </form>          
+  </div>
+</div>  
+
+
+<div id="myModal" class="modal" >
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <p style="text-align: center;font-size: 20px;"><b>When will you be available ?</b></p>
+    <form form class="form-signin" [formGroup]="availabilityForm" novalidate>
+      <div class="row">      
+        <label class="required col-2 col-form-label">Next date</label>
+        <div class="col-8">
+            <input type="date" class="form-control" [class.is-invalid]="availabilityForm.get('nextDate').invalid && availabilityForm.get('nextDate').dirty" 
+              formControlName="nextDate" name="startDate" placeholder="Start date" required />
+            <small class="form-text" [hidden]="availabilityForm.get('nextDate').valid || availabilityForm.get('nextDate').pristine">
+              Next availabile date is required
+            </small> 
+        </div>
+      </div>  
+      <div class="row" style="margin-top:20px;">
+          <button type="submit" class="btn btn-primary active mt-3" style="margin-left:180px;width: 120px;height: 45px" [disabled]="availabilityForm.invalid" (click)="submitInfo()">Confirm</button>
+          <button type="button" class="btn btn-danger active mt-3" style="margin-left:40px;width: 120px;height: 45px" (click)="closeModal()">Cancel</button>  
+      </div>            
+      
+    </form>
+    
+  
+  </div>
+</div>

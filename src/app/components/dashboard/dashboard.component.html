@@ -1,0 +1,50 @@
+<div class="row" style="margin-left:20px">
+    <div class="col-lg-12">
+      <h4 class="page-header"><i class="fa fa-laptop" style="size:50px;"></i> Dashboard</h4>
+      <ol class="breadcrumb" style="height:50px;">
+        <li style="margin-right:20px;"><i class="fa fa-home"></i>Home</li>
+        <li><i class="fa fa-laptop"></i>Dashboard</li>
+      </ol>
+    </div>
+  </div>
+<div class="row">
+  <div class="card col-3" style="margin-left:50px;margin-right: 15px;">
+    <h4 class="page-header" style="color:white"><i class="fa fa-user-md"></i> Profile</h4>
+    <hr style="height:1px;color:white;background-color: white"/>
+    <div class="container" style="margin-top:30px;margin-left: 60px;">
+        <h4 style="color:white">{{userInfo.firstname}}{{ userInfo.lastname}}</h4>
+        <div class="follow-ava">
+          <img src="assets/profile-widget-avatar.jpg" alt="">
+        </div>
+        <h6 style="color:white">Administrator</h6>
+        <div class="row" >
+            <button type="button" class="btn btn-success active mt-3" style="margin-top: 70px;margin-left:0px;margin-right: 10px;width: 120px;height: 45px" (click)="addBio()">Add Bio</button>
+        </div>        
+    </div>
+  </div>  
+      
+  <div class="card col-3" style="margin-left:15px;margin-right: 15px;">
+      <h4 class="page-header" style="color:white"><i class="fa fa-user-md"></i> Portfolio</h4>
+      <hr style="height:1px;color:white;background-color: white"/>
+      <div class="container" style="margin-top:30px;">
+          <p style="color:white">You can add and view the projects you have been engaged in!</p>
+          <div class="row" style="margin-top: 70px;">
+              <button type="button" class="btn btn-success active mt-3" style="margin-left:3px;margin-right: 10px;width: 120px;height: 45px" (click)="addPortfolio()">Add Projects</button>
+              <button type="button" class="btn btn-primary active mt-3" style="margin-left: 0px;margin-right: 10px;width: 120px;height: 45px" (click)="view()">View all</button>
+          </div>
+                      
+      </div>
+    </div>  
+    <div class="card col-3" style="margin-left:15px;margin-right: 15px;">
+        <h4 class="page-header" style="color:white"><i class="fa fa-user-md"></i> Educational </h4>
+        <hr style="height:1px;color:white;background-color: white"/>
+        <div class="container" style="margin-top:30px;">
+            <h6 style="color:white">Edication and your experience</h6>
+            <p id="texting" style="color:white">{{ userInfo.qualification }} {{userInfo.school}}</p>                        
+        </div>
+        <div class="row" style="margin-top: 70px;">
+            <button type="button" class="btn btn-success active mt-3" style="margin-left:80px;margin-right: 10px;width: 140px;height: 45px" (click)="addEducation()">Add Education</button>
+        </div>
+      </div>  
+        
+</div>

@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="title">
+      <h2> Talent Detail </h2>
+    </div>
+    <hr style="height:1px;color:#333;background-color:#333;"/>
+    <div class="container" style="margin-top:30px;" >
+      
+        <div class=" form-group row">
+          <div class="col-4">
+              <img src="assets/user.png" style="width:95px;height:105px;margin-right: 20px;margin-left: 10px;">
+              <p style="font-size:18px;"><b>Terbinos Getachew</b></p>
+              <!-- <p style="font-size:18px;"><b>{{talent.firstname}} {{talent.lastname}}</b></p> -->
+              <p style="font-size:14px;margin-top: -20px;">Frontend Developer</p> 
+              <!-- <p style="font-size:14px;margin-top: -20px;">{{talent.interest}}</p> -->
+          </div> 
+          <div class="col-8">
+            <h4>About</h4>
+            <hr style="height:0.5px;color:#333;background-color:#333;margin-bottom: 50px;"/>
+              <!-- <p style="font-size:18px;"><b>Terbinos Getachew</b></p> -->
+              <p style="font-size:14px;margin-top: -20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod atque dignissimos quia neque iusto, nemo laborum consectetur 
+                a pariatur voluptatum amet ducimus deleniti doloremque. Soluta ex ab error officiis in.</p>
+              <!-- <p style="font-size:14px;margin-top: -20px;">{{talent.aboutMe}}</p> -->
+          </div> 
+        </div>
+        <div class=" form-group row">
+          <h4 style="margin-left:18px;">Projects</h4>
+          
+            <div class="col-12">
+              <hr style="height:0.5px;color:#333;background-color:#333;margin-bottom: 50px;"/>
+              <div class="row">
+                <div class="col-4" *ngFor="let projectTitle of talent.projectTitle">
+                <!-- <div class="col-4" *ngFor="let portfolio of portfolioList.portfolio">   -->
+                  HahuCars
+                  <!-- {{projectTitle}} -->
+                </div>
+                <div class="col-4">
+                  Self Driving Car
+                </div>
+                <div class="col-4">
+                  Uni Medical
+                </div>
+              </div>
+            </div> 
+        </div>
+        <div class="title" style="margin-top:70px;">
+            <h3 style="margin-left:-290px;">Education and Experience </h3>
+        </div>
+        <hr style="height:0.5px;color:#333;background-color:#333;"/>
+        <div class=" form-group row">
+              
+              <div class="col-12">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, ducimus. Ab at laudantium error tenetur quaerat nisi ullam pariatur modi quae fugit debitis, hic odit harum ut omnis repellat iusto.</p>
+                <!-- <p>{{talent.firstname}} {{talent.lastname}} is graduated from {{talent.school}} and hava an experience at {{talent.companyName}} for about {{talent.years}}</p> -->
+              </div> 
+        </div>
+        <div class="row" style="margin-top:20px;">
+          <button type="submit" class="btn btn-success active mt-3" style="margin-left:18px;width: 180px;height: 45px" [disabled]="portfolioForm.invalid" (click)="login()">Send Message</button>
+          <button type="submit" class="btn active mt-3" style="margin-left:18px;width: 120px;height: 45px;background-color: gold" [disabled]="portfolioForm.invalid" (click)="login()">Give Rating</button>
+          <button type="submit" class="btn btn-danger active mt-3" style="margin-left:18px;width: 120px;height: 45px;" [disabled]="portfolioForm.invalid" (click)="index()">Cancel</button>
+        </div>  
+           
+    </div>
+</div>  
+  
+
+  

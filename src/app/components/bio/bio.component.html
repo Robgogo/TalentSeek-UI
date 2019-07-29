@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="title">
+    <h2> <img src="assets/register.png" style="width:45px;height:45px;margin-right: 20px;margin-left: -80px;">Basic Information </h2>
+  </div>
+  <hr style="height:1px;color:#333;background-color:#333;margin-bottom: 50px;"/>
+  <div class="container">
+    <form class="form-signin" [formGroup]="bioForm" novalidate>
+        <div class=" form-group row">
+            <label class="required col-3 col-form-label">Skills</label>
+            <div class="col-9">
+              <select [class.is-invalid]="bioForm.get('skill').invalid && bioForm.get('skill').dirty"
+                  formControlName="skill" id="skill" class="custom-select" required>
+                <option [hidden]="bioForm.get('skill').dirty" value="" selected>Select skill</option>
+                <option  value="angular">Angular</option>
+                <option  value="react">React</option>
+                <option  value="nodeJS">NodeJS</option>
+                <option  value="java">Java</option>
+                <option  value="python">Python</option>
+              </select>
+              <small class="form-text" [hidden]="bioForm.get('skill').valid || bioForm.get('skill').pristine">
+                Skill is required
+              </small>  
+            </div> 
+          </div>
+          <div class=" form-group row">
+              <label class="required col-3 col-form-label">Years of experience</label>
+              <div class="col-9">
+                  <input class="form-control" type="number" [class.is-invalid]="bioForm.get('yearOfExp').invalid && bioForm.get('yearOfExp').dirty" 
+                    formControlName="yearOfExp" name="yearOfExp" placeholder="1 or 2" required >
+                  <small class="form-text" [hidden]="bioForm.get('yearOfExp').valid || bioForm.get('yearOfExp').pristine">
+                    Years of experience is required
+                  </small>  
+              </div> 
+          </div>    
+      <div class=" form-group row">
+        <label class="required col-3 col-form-label">Interest</label>
+        <div class="col-9">
+          <select [class.is-invalid]="bioForm.get('interest').invalid && bioForm.get('interest').dirty"
+              formControlName="interest" id="interest" class="custom-select" required>
+            <option [hidden]="bioForm.get('interest').dirty" value="" selected>Select Interest</option>
+            <option  value="backEnd">Back End</option>
+            <option  value="frontEnd">Front End</option>
+            <option  value="fullStack">Full Stack</option>
+            <option  value="dataEntry">Data Entry</option>
+            <option  value="securityExpert">Security Expert</option>
+          </select>
+          <small class="form-text" [hidden]="bioForm.get('interest').valid || bioForm.get('interest').pristine">
+            Interest is required
+          </small>  
+        </div> 
+      </div>
+      <div class=" form-group row">
+          <label class="required col-3 col-form-label">About me</label>
+          <div class="col-9">
+              <textarea class="form-control" [class.is-invalid]="bioForm.get('aboutMe').invalid && bioForm.get('aboutMe').dirty" 
+                formControlName="aboutMe" name="aboutMe" placeholder="Example : I am an experienced web developer ..." required ></textarea>
+              <small class="form-text" [hidden]="bioForm.get('aboutMe').valid || bioForm.get('aboutMe').pristine">
+                About me is required
+              </small>  
+          </div> 
+      </div>
+      <!-- <div class=" form-group row">
+          <label class="required col-3 col-form-label">Profile picture</label>
+          <div class="col-9">
+              <input type="file" class="form-control" [class.is-invalid]="bioForm.get('photo').invalid && bioForm.get('photo').dirty" 
+                formControlName="photo" name="photo" placeholder="Example : I am an experienced web developer ..." required />
+              <small class="form-text" [hidden]="bioForm.get('photo').valid || bioForm.get('photo').pristine">
+                Profile picture is required
+              </small>  
+          </div> 
+      </div> -->
+      <div class="row" style="margin-top:20px;">
+        <button type="submit" class="btn btn-primary active mt-3" [disabled]="bioForm.invalid" style="margin-left:180px;width: 120px;height: 45px" (click)="onSubmit()">Save</button>
+        <button type="button" class="btn btn-danger active mt-3" style="margin-left:40px;width: 120px;height: 45px" (click)="goBack()">Cancel</button>
+      </div>  
+    </form>          
+  </div>
+</div>  

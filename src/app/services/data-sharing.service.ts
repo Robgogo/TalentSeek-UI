@@ -8,9 +8,16 @@ import { Customer } from "../Customer";
 })
 export class DataSharingService {
 
-  private customerInfo: any;
+  private info: any={};
+  public id: any;
+  private token:any;
+  private temp:any;
+  private userInfo:any={};
+  private message:string;
+  private talent:any={};
   private appointmentInfo: any;
   public hospitalInfo: any;
+  private talentList:any=[];
   public internetConnected = true;
 
   public loggedInSource = new BehaviorSubject(localStorage.getItem('staff') != null);
@@ -20,11 +27,19 @@ export class DataSharingService {
 
 
   sendInfo(info:any){
-    this.customerInfo=info;
+    this.info=info;
   }
 
-  getCustomerInfo():Observable<any>{
-    return of(this.customerInfo);
+  getInfo(){
+    return this.info;
+  }
+
+  sendUser(info:any){
+    this.userInfo = info;
+  }
+
+  getUserInfo():Observable<any>{
+    return of(this.userInfo);
   }
 
   deleteAppointment(deleteInfo:any){
@@ -43,9 +58,38 @@ export class DataSharingService {
     var hospitalId=id;
     return hospitalId;
   }
+
   shareAppointmentInfo(appointmentInfo:any){
     this.appointmentInfo=appointmentInfo
     return of(this.appointmentInfo);
+  }
+  sendMessage(message:string){
+    this.message = message;
+  }
+  returnMessage(){
+    return this.message;
+  }
+
+  tempo(info:any){
+    this.temp= info;
+  }
+  sendTemp(){
+    return this.temp;
+  }
+  sendResult(list:any){
+    this.talentList=list;
+  }
+
+  getesult(){
+    return this.talentList;
+  }
+  
+  getProfile(talent:any){
+    this.talent = talent;
+  }
+
+  recieveTalent(){
+    return this.talent;
   }
   
 }

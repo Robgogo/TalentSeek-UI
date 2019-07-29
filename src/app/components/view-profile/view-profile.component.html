@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="title">
+      <h2> Talent Detail </h2>
+    </div>
+    <hr style="height:1px;color:#333;background-color:#333;"/>
+    <div class="container" style="margin-top:30px;" >
+      
+        <div class=" form-group row">
+          <div class="col-4">
+              <img src="assets/user.png" style="width:95px;height:105px;margin-right: 20px;margin-left: 10px;">
+              <p style="font-size:18px;"><b>Terbinos Getachew</b></p>
+              <!-- <p style="font-size:18px;"><b>{{talent.firstname}} {{talent.lastname}}</b></p> -->
+              <p style="font-size:14px;margin-top: -20px;">Frontend Developer</p> 
+              <!-- <p style="font-size:14px;margin-top: -20px;">{{talent.interest}}</p> -->
+          </div> 
+          <div class="col-8">
+            <!-- <h5>Previous Rating {{previousRating}}</h5> -->
+            <h5>Previous Rating : 4</h5>
+            <hr style="height:0.5px;color:#333;background-color:#333;margin-bottom: 50px;"/>
+              <!-- <p style="font-size:18px;"><b>Terbinos Getachew</b></p> -->
+            <div >
+                <ngb-rating [(rate)]="currentRate">
+                    <ng-template let-fill="fill" let-index="index">
+                      <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                    </ng-template>
+                  </ngb-rating>
+                  <hr>
+                  <pre><span style="size:40px;">You rated: <b>{{currentRate}}</b></span></pre>
+            </div>  
+              
+              <!-- <button class="btn btn-sm btn-outline-{{readonly ? 'danger' : 'success'}}" (click)="readonly = !readonly">
+                {{ readonly ? "readonly" : "editable"}}
+              </button> -->
+              <!-- <p style="font-size:14px;margin-top: -20px;">{{talent.aboutMe}}</p> -->
+          </div> 
+        </div>
+        <div class="row" style="margin-top:20px;">
+          <button type="submit" class="btn active mt-3" style="margin-left:18px;width: 120px;height: 45px;background-color: gold" (click)="login()">Give Rating</button>
+        </div>  
+           
+    </div>
+</div>  
+
+<!-- <pre>Rate: <b>{{currentRate}}</b></pre> -->
+
+  
