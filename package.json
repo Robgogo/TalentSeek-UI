@@ -33,7 +33,7 @@
     "datatables.net-dt": "^1.10.19",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-toastr": "^9.1.0",
     "path": "^0.12.7",
     "rxjs": "^6.0.0",
